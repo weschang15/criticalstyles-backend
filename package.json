@@ -1,0 +1,19 @@
+{
+  "name": "criticalstyles",
+  "version": "1.0.0",
+  "description": "Web application backend for a 3 step process to generate Critical CSS, for free.",
+  "main": "start.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weschang15/criticalstyles.git"
+  },
+  "author": "Wesley Chang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/weschang15/criticalstyles/issues"
+  },
+  "homepage": "https://github.com/weschang15/criticalstyles#readme"
+}
