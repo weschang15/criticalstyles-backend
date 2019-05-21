@@ -15,5 +15,24 @@
   "bugs": {
     "url": "https://github.com/weschang15/criticalstyles/issues"
   },
-  "homepage": "https://github.com/weschang15/criticalstyles#readme"
+  "homepage": "https://github.com/weschang15/criticalstyles#readme",
+  "dependencies": {
+    "apollo-server-express": "^2.5.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.0",
+    "graphql": "^14.3.0",
+    "graphql-iso-date": "^3.6.1",
+    "graphql-middleware": "^3.0.2",
+    "graphql-redis-subscriptions": "^2.1.0",
+    "helmet": "^3.18.0",
+    "ioredis": "^4.9.3",
+    "yup": "^0.27.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.13",
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.0"
+  }
 }
