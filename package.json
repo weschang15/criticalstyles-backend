@@ -4,7 +4,8 @@
   "description": "Web application backend for a 3 step process to generate Critical CSS, for free.",
   "main": "start.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon -r esm -r dotenv/config start"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/weschang15/criticalstyles#readme",
   "dependencies": {
     "apollo-server-express": "^2.5.0",
+    "clean-css": "^4.2.1",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "esm": "^3.2.25",
@@ -28,11 +30,14 @@
     "graphql-redis-subscriptions": "^2.1.0",
     "helmet": "^3.18.0",
     "ioredis": "^4.9.3",
+    "penthouse": "^2.2.0",
     "yup": "^0.27.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.13",
+    "ioredis-mock": "^4.12.0",
     "jest": "^24.8.0",
-    "nodemon": "^1.19.0"
+    "nodemon": "^1.19.0",
+    "supertest": "^4.0.2"
   }
 }
