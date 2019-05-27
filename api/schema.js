@@ -5,6 +5,7 @@ import merge from "lodash/merge";
 // import query resolvers
 
 // import mutation resolvers
+import StylesheetMutations from "./mutations/stylesheet";
 
 // import subscription resolvers
 
@@ -13,7 +14,7 @@ import typeDefs from "./types";
 
 // import resolver validation middlewares
 
-const resolvers = merge({});
+const resolvers = merge({}, StylesheetMutations);
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 const schemaWithMiddleware = applyMiddleware(schema);

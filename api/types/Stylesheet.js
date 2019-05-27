@@ -2,7 +2,7 @@ import { gql } from "apollo-server-express";
 
 const Stylesheet = gql`
   type Stylesheet {
-    content: String!
+    styles: String!
     viewport: Viewport!
   }
 
@@ -12,8 +12,12 @@ const Stylesheet = gql`
     stylesheet: Stylesheet
   }
 
+  input StylesheetInput {
+    url: String!
+  }
+
   extend type Mutation {
-    createStylesheet: CreateStylesheetResponse!
+    createStylesheet(input: StylesheetInput!): CreateStylesheetResponse!
   }
 `;
 
