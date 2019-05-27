@@ -1,6 +1,16 @@
 import { Cache, cleanCSS, penthouse } from "../../services";
 import { withCatch, extractErrors } from "../../../utils";
 
+/**
+ * Resolver responsible for triggering CCSS service, caching response or retrieving the cached response
+ * for the user defined target URL
+ *
+ * @param {Object} _ parent element, however, we do not have a parent with this GQL Type
+ * @param {Object} args request arguments
+ * @param {Object} context data shared between all resolvers
+ * @param {Object} info metadata
+ * @return {Object}
+ */
 const mutation = async (_, { input: { url } }, context, info) => {
   const cache = new Cache();
   const generateCCSS = async targetURL => {
@@ -13,7 +23,7 @@ const mutation = async (_, { input: { url } }, context, info) => {
     const { styles } = cleanCSS(await penthouse(targetURL));
     if (styles.length) {
       // set some sort of logging
-      cache.set(targetURL, styles, "ex", 30);
+      cache.set(targetURL, styles);
     }
 
     return styles;
