@@ -1,16 +1,30 @@
-import { cleanCSS, penthouse } from "../../services";
+import { Cache, cleanCSS, penthouse } from "../../services";
 import { withCatch, extractErrors } from "../../../utils";
 
-const mutation = async (root, { input: { url } }, context, info) => {
-  const generateCCSS = async targetURL => cleanCSS(await penthouse(targetURL));
+const mutation = async (_, { input: { url } }, context, info) => {
+  const cache = new Cache();
+  const generateCCSS = async targetURL => {
+    const existingCCSS = await cache.get(targetURL);
+    if (existingCCSS) {
+      // set some sort of logging
+      return existingCCSS;
+    }
 
-  const [error, results] = await withCatch(generateCCSS(url));
+    const { styles } = cleanCSS(await penthouse(targetURL));
+    if (styles.length) {
+      // set some sort of logging
+      cache.set(targetURL, styles, "ex", 30);
+    }
+
+    return styles;
+  };
+
+  const [error, styles] = await withCatch(generateCCSS(url));
 
   if (error) {
     return { ok: false, errors: extractErrors(error) };
   }
 
-  const { styles } = results;
   const stylesheet = {
     styles,
     viewport: {
