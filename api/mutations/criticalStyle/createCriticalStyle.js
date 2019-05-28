@@ -1,5 +1,5 @@
 import { Cache, cleanCSS, penthouse } from "../../services";
-import { withCatch, extractErrors } from "../../../utils";
+import { createCCSSResponse, withCatch, extractErrors } from "../../../utils";
 
 /**
  * Resolver responsible for triggering CCSS service, caching response or retrieving the cached response
@@ -13,37 +13,24 @@ import { withCatch, extractErrors } from "../../../utils";
  */
 const mutation = async (_, { input: { url } }, context, info) => {
   const cache = new Cache();
-  const generateCCSS = async targetURL => {
-    const existingCCSS = await cache.get(targetURL);
-    if (existingCCSS) {
-      // set some sort of logging
-      return existingCCSS;
-    }
+  const generateCCSS = async targetURL => cleanCSS(await penthouse(targetURL));
+  const cacheNewCCSS = (targetURL, styles) => cache.set(targetURL, styles);
 
-    const { styles } = cleanCSS(await penthouse(targetURL));
-    if (styles.length) {
-      // set some sort of logging
-      cache.set(targetURL, styles);
-    }
-
+  const getCCSS = async targetURL => {
+    const { styles } = await generateCCSS(targetURL);
+    // Returns OK if the cache was successfully set
+    const cacheResponse = await cacheNewCCSS(targetURL, styles);
     return styles;
   };
 
-  const [error, styles] = await withCatch(generateCCSS(url));
+  const [error, styles] = await withCatch(getCCSS(url));
 
   if (error) {
     return { ok: false, errors: extractErrors(error) };
   }
 
-  const stylesheet = {
-    styles,
-    viewport: {
-      height: 900,
-      width: 1300
-    }
-  };
-
-  return { ok: !!stylesheet, stylesheet };
+  const stylesheet = createCCSSResponse(styles);
+  return { ok: true, stylesheet };
 };
 
 export default mutation;
