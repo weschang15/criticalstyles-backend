@@ -20,29 +20,29 @@
   },
   "homepage": "https://github.com/weschang15/criticalstyles#readme",
   "dependencies": {
-    "apollo-server-express": "^2.5.0",
+    "apollo-server-express": "^2.7.0",
     "cheerio": "^1.0.0-rc.3",
     "clean-css": "^4.2.1",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "esm": "^3.2.25",
-    "express": "^4.17.0",
-    "graphql": "^14.3.0",
+    "express": "^4.17.1",
+    "graphql": "^14.4.2",
     "graphql-iso-date": "^3.6.1",
     "graphql-middleware": "^3.0.2",
     "graphql-redis-subscriptions": "^2.1.0",
-    "helmet": "^3.18.0",
-    "ioredis": "^4.9.3",
-    "lodash": "^4.17.11",
+    "helmet": "^3.19.0",
+    "ioredis": "^4.11.2",
+    "lodash": "^4.17.15",
     "node-fetch": "^2.6.0",
     "penthouse": "^2.2.0",
     "yup": "^0.27.0"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.13",
-    "ioredis-mock": "^4.12.0",
+    "@types/jest": "^24.0.15",
+    "ioredis-mock": "^4.12.1",
     "jest": "^24.8.0",
-    "nodemon": "^1.19.0",
+    "nodemon": "^1.19.1",
     "supertest": "^4.0.2"
   }
 }
