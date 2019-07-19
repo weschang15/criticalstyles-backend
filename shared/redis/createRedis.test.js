@@ -1,6 +1,6 @@
 require = require("esm")(module);
 const Redis = require("ioredis-mock");
-const { getConfig } = require("../../../utils");
+const { getConfig } = require("../../utils");
 
 const createRedisMock = jest.fn();
 createRedisMock.mockImplementation((opts = {}) => {
