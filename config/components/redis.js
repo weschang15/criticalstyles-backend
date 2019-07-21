@@ -6,9 +6,7 @@ const config = {
       retryStrategy: times => Math.max(times * 100, 3000)
     },
     production: {
-      host: process.env.REDIS_HOST,
-      port: process.env.REDIS_PORT,
-      password: process.env.REDIS_PASS,
+      url: process.env.REDIS_URL,
       retryStrategy: times => Math.max(times * 100, 3000)
     }
   }
