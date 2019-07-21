@@ -4,6 +4,7 @@
   "description": "Web application backend for a 2 step process to generate Critical CSS, for free.",
   "main": "start.js",
   "scripts": {
+    "start": "node -r esm -r dotenv/config start",
     "server": "nodemon -r esm -r dotenv/config start",
     "test:coverage": "jest --coverage --colors",
     "test:watch": "jest --watchAll",
