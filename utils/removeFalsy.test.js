@@ -1,5 +1,5 @@
 require = require("esm")(module);
-const removeFalsy = require("./utils");
+const { removeFalsy } = require("../utils");
 
 describe("removeFalsy", () => {
   it("should remove all falsy values", () => {

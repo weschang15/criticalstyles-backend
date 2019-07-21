@@ -1,5 +1,5 @@
 require = require("esm")(module);
-const removeDuplicates = require("./utils");
+const { removeDuplicates } = require("../utils");
 
 describe("removeDuplicates", () => {
   it("should remove duplicate values", () => {

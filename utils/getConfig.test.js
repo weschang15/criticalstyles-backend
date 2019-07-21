@@ -1,6 +1,6 @@
 require = require("esm")(module);
-const config = require("../../config");
-const getConfig = require("./utils");
+const config = require("../config");
+const { getConfig } = require("../utils");
 
 describe("getConfig", () => {
   it("should retrieve environment specific settings", () => {
