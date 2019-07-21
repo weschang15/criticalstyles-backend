@@ -1,6 +1,10 @@
 {
   "name": "criticalstyles",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.6.0",
+    "npm": "6.9.0"
+  },
   "description": "Web application backend for a 2 step process to generate Critical CSS, for free.",
   "main": "start.js",
   "scripts": {
