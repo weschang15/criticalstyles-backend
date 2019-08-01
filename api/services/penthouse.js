@@ -5,7 +5,12 @@ import getCSS from "./utils/getCSS";
 const service = async url => {
   const cssString = await getCSS(url);
   const browser = puppeteer.launch({
-    args: ["--disable-setuid-sandbox", "--no-sandbox"],
+    headless: true,
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage"
+    ],
     defaultViewport: {
       width: 1300,
       height: 900
