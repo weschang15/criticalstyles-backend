@@ -14,6 +14,7 @@ const CriticalStyle = gql`
 
   input CriticalStyleInput {
     url: String!
+    viewport: [Int!]
   }
 
   extend type Mutation {

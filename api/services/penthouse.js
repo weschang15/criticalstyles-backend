@@ -2,7 +2,7 @@ import penthouse from "penthouse";
 import puppeteer from "puppeteer";
 import getCSS from "./utils/getCSS";
 
-const service = async url => {
+const service = async (url, viewport) => {
   const cssString = await getCSS(url);
   const browser = puppeteer.launch({
     headless: true,
@@ -12,8 +12,8 @@ const service = async url => {
       "--disable-dev-shm-usage"
     ],
     defaultViewport: {
-      width: 1300,
-      height: 900
+      width: viewport ? viewport[0] : 1300,
+      height: viewport ? viewport[1] : 900
     }
   });
 

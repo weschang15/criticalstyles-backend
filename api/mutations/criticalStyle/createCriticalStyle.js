@@ -11,9 +11,10 @@ import { createCCSSResponse, withCatch, extractErrors } from "../../../utils";
  * @param {Object} info metadata
  * @return {Object}
  */
-const mutation = async (_, { input: { url } }, context, info) => {
+const mutation = async (_, { input: { url, viewport } }, context, info) => {
   const cache = new Cache();
-  const generateCCSS = async targetURL => cleanCSS(await penthouse(targetURL));
+  const generateCCSS = async targetURL =>
+    cleanCSS(await penthouse(targetURL, viewport));
   const cacheNewCCSS = (targetURL, styles) => cache.set(targetURL, styles);
 
   const getCCSS = async targetURL => {
