@@ -1,4 +1,5 @@
 import { ApolloServer } from "apollo-server-express";
+import * as models from "./models";
 import schema from "./schema";
 
 /**
@@ -10,7 +11,12 @@ import schema from "./schema";
  * @param {Object} args.connection Websocket connection query
  * @return {Object} our resolver context for either Queries & Mutations or Subscriptions
  */
-const context = ({ req, res, connection }) => ({ req, res, ip: req.ip });
+const context = ({ req, res, connection }) => ({
+  ip: req.ip,
+  models,
+  req,
+  res
+});
 
 const apollo = new ApolloServer({
   schema,

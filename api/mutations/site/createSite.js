@@ -1,4 +1,3 @@
-import { Site } from "../../models";
 import { withCatch, extractErrors } from "../../../utils";
 
 /**
@@ -10,7 +9,7 @@ import { withCatch, extractErrors } from "../../../utils";
  * @param {Object} info metadata
  * @return {Object}
  */
-const mutation = async (_, { input }, context, info) => {
+const mutation = async (_, { input }, { models: { Site } }, info) => {
   async function createSite(input) {
     const site = new Site({ ...input });
     const result = await site.save();
