@@ -1,6 +1,6 @@
 import merge from "lodash/merge";
-import criticalStyleMiddelware from "./criticalStyle";
+import stylesheetMiddelware from "./stylesheet";
 
-const resolverMiddleware = merge({}, criticalStyleMiddelware);
+const resolverMiddleware = merge({}, stylesheetMiddelware);
 
 export default resolverMiddleware;
