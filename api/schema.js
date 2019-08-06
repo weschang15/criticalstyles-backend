@@ -3,6 +3,7 @@ import { applyMiddleware } from "graphql-middleware";
 import merge from "lodash/merge";
 
 // import mutation resolvers
+import SiteMutations from "./mutations/site";
 import StylesheetMutations from "./mutations/stylesheet";
 
 // import group export of typeDefs
@@ -12,7 +13,7 @@ import typeDefs from "./types";
 import resolverMiddleware from "./middlewares/resolverMiddleware";
 
 // merged resolvers
-const resolvers = merge({}, StylesheetMutations);
+const resolvers = merge({}, SiteMutations, StylesheetMutations);
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 const schemaWithMiddleware = applyMiddleware(schema, resolverMiddleware);
