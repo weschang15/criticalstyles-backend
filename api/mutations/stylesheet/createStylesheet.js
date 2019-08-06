@@ -23,7 +23,7 @@ const mutation = async (_, { input: { url, viewport } }, context, info) => {
   const getCCSS = async (inputUrl, inputViewport) => {
     const data = await runServices(inputUrl, inputViewport);
     const { styles, stats } = data;
-    stats.viewport = inputViewport;
+    stats.viewport = inputViewport || [1300, 900];
 
     const ccss = { styles, stats };
     // Returns OK if the cache was successfully set

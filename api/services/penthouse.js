@@ -12,16 +12,16 @@ const service = async (url, viewport) => {
       "--disable-dev-shm-usage"
     ],
     defaultViewport: {
-      width: viewport.length ? viewport[0] : 1300,
-      height: viewport.length ? viewport[1] : 900
+      width: viewport && viewport.length ? viewport[0] : 1300,
+      height: viewport && viewport.length ? viewport[1] : 900
     }
   });
 
   return penthouse({
     url,
     cssString,
-    width: viewport.length ? viewport[0] : 1300,
-    height: viewport.length ? viewport[1] : 900,
+    width: viewport && viewport.length ? viewport[0] : 1300,
+    height: viewport && viewport.length ? viewport[1] : 900,
     puppeteer: {
       getBrowser: () => browser
     }
