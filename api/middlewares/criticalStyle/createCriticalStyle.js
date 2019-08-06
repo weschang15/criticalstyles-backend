@@ -8,14 +8,14 @@ const middleware = async (resolve, parent, args, context, info) => {
   } = args;
 
   const getCachedStyles = targetURL => cache.get(targetURL);
-  const [error, styles] = await withCatch(getCachedStyles(url));
+  const [error, response] = await withCatch(getCachedStyles(url));
 
   if (error) {
     return { ok: false, errors: extractErrors(error) };
   }
 
-  if (styles) {
-    const stylesheet = createCCSSResponse(styles);
+  if (response) {
+    const stylesheet = createCCSSResponse(JSON.parse(response));
     return { ok: true, stylesheet };
   }
 
