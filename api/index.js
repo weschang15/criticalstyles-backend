@@ -5,10 +5,10 @@ import middlewares from "./middlewares";
 import { getConfig } from "../utils";
 import config from "../config";
 
-// Database connection
+// Database connection, import the module only for its side effects
 import "./services/db";
-// Mongoose models
-import "./models";
+// Mongoose models, imports models into current scope, containing all exports from the module
+import * as models from "./models";
 
 const { port } = config;
 const cors = getConfig("cors");

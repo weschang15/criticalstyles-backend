@@ -1,6 +1,7 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
+import { _Schema, Types } from "./Schema";
 
-const SiteSchema = new Schema({
+const SiteSchema = new _Schema({
   name: {
     type: String,
     required: true
@@ -10,7 +11,7 @@ const SiteSchema = new Schema({
     required: true,
     unique: true
   },
-  pages: [{ type: Schema.Types.ObjectId, ref: "Page" }]
+  pages: [{ type: Types.ObjectId, ref: "Page" }]
 });
 
 export default mongoose.model("Site", SiteSchema);

@@ -1,18 +1,19 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
+import { _Schema, Types } from "./Schema";
 
-const StylesheetSchema = new Schema({
+const StylesheetSchema = new _Schema({
   styles: {
     type: String,
     required: true
   },
   info: {
-    minifiedSize: Schema.Types.Decimal128,
-    originalSize: Schema.Types.Decimal128,
+    minifiedSize: Types.Decimal128,
+    originalSize: Types.Decimal128,
     viewport: [Number]
   }
 });
 
-const PageSchema = new Schema({
+const PageSchema = new _Schema({
   name: {
     type: String,
     required: true
