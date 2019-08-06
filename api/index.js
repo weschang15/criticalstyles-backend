@@ -5,6 +5,11 @@ import middlewares from "./middlewares";
 import { getConfig } from "../utils";
 import config from "../config";
 
+// Database connection
+import "./services/db";
+// Mongoose models
+import "./models";
+
 const { port } = config;
 const cors = getConfig("cors");
 const app = express();
