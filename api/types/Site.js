@@ -2,6 +2,7 @@ import { gql } from "apollo-server-express";
 
 const Site = gql`
   type Site {
+    id: ID!
     name: String!
     url: String!
   }
