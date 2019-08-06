@@ -7,7 +7,9 @@ const Site = gql`
     url: String!
   }
 
-  extend type Response {
+  type NewSiteResponse {
+    ok: Boolean!
+    errors: [Error!]
     site: Site!
   }
 
@@ -17,7 +19,7 @@ const Site = gql`
   }
 
   extend type Mutation {
-    createSite(input: NewSiteInput!): Response!
+    createSite(input: NewSiteInput!): NewSiteResponse!
   }
 `;
 
