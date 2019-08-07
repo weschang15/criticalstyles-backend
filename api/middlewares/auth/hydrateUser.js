@@ -8,7 +8,7 @@ function hydrateUser(req, _, next) {
   }
 
   const { user } = session;
-  const currentUser = await withCatch(User.findById(user.id, '-password'));
+  const currentUser = await withCatch(User.findById(user._id, '-password'));
   // set the current User model instance on req object
   req.user = currentUser;
   return next();
