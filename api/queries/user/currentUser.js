@@ -1,8 +1,7 @@
 import { withCatch, extractErrors } from "../../../utils";
 
-const currentUser = async (_, __, { req }, info) => {
+const currentUser = async (_, __, { session }) => {
   function findMe() {
-    const { session } = req;
     if (!session.user) {
       return Promise.reject(new Error("User not currently signed in."));
     }

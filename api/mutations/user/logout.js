@@ -1,7 +1,6 @@
 import { withCatch, extractErrors } from "../../../utils";
 
-const logout = async (_, __, { req }, info) => {
-  const { session } = req;
+const logout = async (_, __, { session }) => {
   if (!session) {
     return { ok: true };
   }

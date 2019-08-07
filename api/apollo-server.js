@@ -15,7 +15,8 @@ const context = ({ req, res, connection }) => ({
   ip: req.ip,
   models,
   req,
-  res
+  res,
+  session: req.session
 });
 
 const apollo = new ApolloServer({
