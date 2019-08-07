@@ -1,8 +1,10 @@
 import createUser from "./createUser";
+import logout from "./logout";
 
 const resolver = {
   Mutation: {
-    createUser
+    createUser,
+    logout
   }
 };
 

@@ -2,12 +2,12 @@ import { withCatch, extractErrors } from "../../../utils";
 
 const currentUser = async (_, __, { req }, info) => {
   function findMe() {
-    const { user } = req;
-    if (!user) {
-      return Promise.reject(new Error("Unauthorized user."));
+    const { session } = req;
+    if (!session.user) {
+      return Promise.reject(new Error("User not currently signed in."));
     }
 
-    return Promise.resolve(user);
+    return Promise.resolve(session.user);
   }
 
   const [error, user] = await withCatch(findMe());

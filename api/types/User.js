@@ -46,6 +46,7 @@ const User = gql`
   extend type Mutation {
     createUser(input: NewUserInput!): NewUserResponse!
     login(input: LoginInput!): UserResponse!
+    logout: Response!
   }
 `;
 
