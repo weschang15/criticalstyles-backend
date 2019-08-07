@@ -8,6 +8,7 @@ import UserQueries from "./queries/user";
 // import mutation resolvers
 import SiteMutations from "./mutations/site";
 import StylesheetMutations from "./mutations/stylesheet";
+import UserMutations from "./mutations/user";
 
 // import group export of typeDefs
 import typeDefs from "./types";
@@ -16,7 +17,13 @@ import typeDefs from "./types";
 import resolverMiddleware from "./middlewares/resolverMiddleware";
 
 // merged resolvers
-const resolvers = merge({}, UserQueries, SiteMutations, StylesheetMutations);
+const resolvers = merge(
+  {},
+  SiteMutations,
+  StylesheetMutations,
+  UserQueries,
+  UserMutations
+);
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 const schemaWithMiddleware = applyMiddleware(schema, resolverMiddleware);

@@ -6,7 +6,8 @@ import { getConfig } from "../utils";
 import { port } from "../config";
 
 // Database connection, import the module only for its side effects
-import "./services/db";
+import { db } from "./services/db";
+db();
 
 const cors = getConfig("cors");
 const app = express();
