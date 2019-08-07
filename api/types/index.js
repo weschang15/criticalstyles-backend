@@ -5,6 +5,7 @@ import Stylesheet from "./Stylesheet";
 import StylesheetInfo from "./StylesheetInfo";
 import Viewport from "./Viewport";
 import Response from "./Response";
+import User from "./User";
 
 export default [
   Root,
@@ -13,5 +14,6 @@ export default [
   Site,
   StylesheetInfo,
   Stylesheet,
-  Viewport
+  Viewport,
+  User
 ];

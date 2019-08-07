@@ -27,6 +27,16 @@ const User = gql`
     password: String!
   }
 
+  type CurrentUserResponse {
+    ok: Boolean!
+    errors: [Error!]
+    user: User
+  }
+
+  extend type Query {
+    currentUser: CurrentUserResponse!
+  }
+
   extend type Mutation {
     createUser(input: NewUserInput!): UserResponse!
     login(input: LoginInput!): UserResponse!
