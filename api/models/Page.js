@@ -18,12 +18,12 @@ const PageSchema = new _Schema({
     type: String,
     required: true
   },
+  stylesheet: StylesheetSchema,
   url: {
     type: String,
     required: true,
     unique: true
-  },
-  stylesheet: StylesheetSchema
+  }
 });
 
 export default mongoose.model("Page", PageSchema);
