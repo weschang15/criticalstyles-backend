@@ -1,9 +1,17 @@
 import mongoose from "mongoose";
 import { getConfig } from "../../utils";
 
-const config = getConfig("mongo");
+export const DatabaseError = mongoose.Error;
 
-mongoose.connect(config.uri, { useNewUrlParser: true, useCreateIndex: true });
-mongoose.connection.on("error", err => {
-  console.error(`🚫 🚫 🚫 → ${err.message}`);
-});
+export function db() {
+  const config = getConfig("mongo");
+
+  mongoose
+    .connect(config.uri, { useNewUrlParser: true, useCreateIndex: true })
+    .then(() => {
+      console.log(`Mongoose is connected`);
+    })
+    .catch(err => {
+      console.error(`🚫 🚫 🚫 → ${err.message}`);
+    });
+}
