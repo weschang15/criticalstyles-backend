@@ -16,7 +16,8 @@ const context = ({ req, res, connection }) => ({
   models,
   req,
   res,
-  session: req.session
+  session: req.session,
+  user: req.user
 });
 
 const apollo = new ApolloServer({
