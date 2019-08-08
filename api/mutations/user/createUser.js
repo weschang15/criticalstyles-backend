@@ -5,7 +5,7 @@ const createUser = async (_, { input }, { models: { User }, session }) => {
   async function newUser(params) {
     const user = new User({ ...params });
     const result = await user.save();
-    return pick(result, ["firstName", "lastName", "email", "_id"]);
+    return result.toJSON();
   }
 
   const [error, user] = await withCatch(newUser(input));

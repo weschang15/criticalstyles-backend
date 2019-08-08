@@ -16,16 +16,10 @@ const User = gql`
     password: String!
   }
 
-  type NewUserResponse {
-    ok: Boolean!
-    errors: [Error!]
-    user: User
-  }
-
   type UserResponse {
     ok: Boolean!
     errors: [Error!]
-    user: User!
+    user: User
   }
 
   input LoginInput {
@@ -44,7 +38,7 @@ const User = gql`
   }
 
   extend type Mutation {
-    createUser(input: NewUserInput!): NewUserResponse!
+    createUser(input: NewUserInput!): UserResponse!
     login(input: LoginInput!): UserResponse!
     logout: Response!
   }

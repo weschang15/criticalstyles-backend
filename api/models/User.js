@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import argon2 from "argon2";
+import pick from "lodash/pick";
 import { _Schema, Types } from "./Schema";
 
 const UserSchema = new _Schema({
@@ -27,5 +29,36 @@ const UserSchema = new _Schema({
   },
   sites: [{ type: Types.ObjectId, ref: "Site" }]
 });
+
+UserSchema.pre("save", async function(next) {
+  const user = this;
+  if (user.isModified("password")) {
+    user.password = await argon2.hash(user.password);
+  }
+
+  return next();
+});
+
+UserSchema.methods.toJSON = function() {
+  return pick(this, ["firstName", "lastName", "email", "_id"]);
+};
+
+UserSchema.statics.authenticate = async function({ email, password }) {
+  if (!password) {
+    throw new Error("Undefined argument `password`.");
+  }
+
+  const user = await this.findOne({ email });
+  if (!user) {
+    throw new Error("Invalid email or password.");
+  }
+
+  const isValid = await argon2.verify(user.password, password);
+  if (!isValid) {
+    throw new Error("Invalid email or password.");
+  }
+
+  return user.toJSON();
+};
 
 export default mongoose.model("User", UserSchema);
