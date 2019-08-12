@@ -6,7 +6,6 @@ const User = gql`
     firstName: String!
     lastName: String!
     email: String!
-    sites: [Site!]!
   }
 
   input NewUserInput {

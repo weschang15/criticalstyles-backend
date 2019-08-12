@@ -1,16 +1,18 @@
-import mongoose from "mongoose";
-import { _Schema, Types } from "./Schema";
+import { createModel, _Schema, Types } from "./Utils";
 
 const SiteSchema = new _Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
   pages: [{ type: Types.ObjectId, ref: "Page" }],
   url: {
     type: String,
-    required: true
-  }
+    required: true,
+    trim: true
+  },
+  _owner: { type: Types.ObjectId, ref: "User" }
 });
 
-export default mongoose.model("Site", SiteSchema);
+export default createModel("Site", SiteSchema);

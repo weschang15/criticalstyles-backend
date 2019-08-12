@@ -10,7 +10,7 @@ const Site = gql`
   type NewSiteResponse {
     ok: Boolean!
     errors: [Error!]
-    site: Site!
+    site: Site
   }
 
   input NewSiteInput {

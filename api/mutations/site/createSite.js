@@ -9,11 +9,14 @@ import { withCatch, extractErrors } from "../../../utils";
  * @param {Object} info metadata
  * @return {Object}
  */
-const mutation = async (_, { input }, { models: { Site } }, info) => {
+const mutation = async (_, { input }, { models: { Site }, user }, info) => {
   async function createSite(input) {
-    const site = new Site({ ...input });
-    const result = await site.save();
-    return result;
+    const newSite = new Site({ ...input });
+
+    const site = await newSite.save();
+    await user.updateOne({ $push: { sites: site } });
+
+    return site;
   }
 
   const [error, site] = await withCatch(createSite(input));

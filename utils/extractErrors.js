@@ -1,4 +1,4 @@
-import { DatabaseError } from "../api/services/db";
+import { DatabaseError } from "../api/models";
 
 const extractErrors = e => {
   if (e instanceof DatabaseError) {

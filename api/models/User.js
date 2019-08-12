@@ -1,7 +1,6 @@
-import mongoose from "mongoose";
 import argon2 from "argon2";
 import pick from "lodash/pick";
-import { _Schema, Types } from "./Schema";
+import { createModel, _Schema, Types } from "./Utils";
 
 const UserSchema = new _Schema({
   firstName: {
@@ -25,9 +24,9 @@ const UserSchema = new _Schema({
     type: String,
     required: [true, "A password must be provided"],
     minlength: 8,
-    maxlength: 1024
-  },
-  sites: [{ type: Types.ObjectId, ref: "Site" }]
+    maxlength: 1024,
+    trim: true
+  }
 });
 
 UserSchema.pre("save", async function(next) {
@@ -49,6 +48,7 @@ UserSchema.statics.authenticate = async function({ email, password }) {
   }
 
   const user = await this.findOne({ email });
+
   if (!user) {
     throw new Error("Invalid email or password.");
   }
@@ -61,4 +61,4 @@ UserSchema.statics.authenticate = async function({ email, password }) {
   return user.toJSON();
 };
 
-export default mongoose.model("User", UserSchema);
+export default createModel("User", UserSchema);

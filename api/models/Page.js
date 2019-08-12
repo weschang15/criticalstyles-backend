@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-import { _Schema, Types } from "./Schema";
+import { createModel, _Schema, Types } from "./Utils";
 
 const StylesheetSchema = new _Schema({
   styles: {
@@ -16,14 +15,16 @@ const StylesheetSchema = new _Schema({
 const PageSchema = new _Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
   stylesheet: StylesheetSchema,
   url: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    trim: true
   }
 });
 
-export default mongoose.model("Page", PageSchema);
+export default createModel("Page", PageSchema);

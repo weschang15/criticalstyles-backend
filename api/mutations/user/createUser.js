@@ -1,5 +1,4 @@
 import { extractErrors, withCatch } from "../../../utils";
-import pick from "lodash/pick";
 
 const createUser = async (_, { input }, { models: { User }, session }) => {
   async function newUser(params) {
