@@ -6,6 +6,7 @@ import StylesheetInfo from "./StylesheetInfo";
 import Viewport from "./Viewport";
 import Response from "./Response";
 import User from "./User";
+import Account from "./Account";
 
 export default [
   Root,
@@ -15,5 +16,6 @@ export default [
   StylesheetInfo,
   Stylesheet,
   Viewport,
-  User
+  User,
+  Account
 ];
