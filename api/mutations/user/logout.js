@@ -1,7 +1,7 @@
 import { withCatch, extractErrors } from "../../../utils";
 
 const logout = async (_, __, { session }) => {
-  if (!session) {
+  if (!session || !session.user) {
     return { ok: true };
   }
 
