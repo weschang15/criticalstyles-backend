@@ -26,7 +26,8 @@ const UserSchema = new _Schema({
     minlength: 8,
     maxlength: 1024,
     trim: true
-  }
+  },
+  accounts: [{ type: Types.ObjectId, ref: "Account" }]
 });
 
 UserSchema.pre("save", async function(next) {
@@ -39,7 +40,7 @@ UserSchema.pre("save", async function(next) {
 });
 
 UserSchema.methods.toJSON = function() {
-  return pick(this, ["firstName", "lastName", "email", "_id"]);
+  return pick(this, ["firstName", "lastName", "email", "_id", "accounts"]);
 };
 
 UserSchema.statics.authenticate = async function({ email, password }) {
@@ -47,7 +48,7 @@ UserSchema.statics.authenticate = async function({ email, password }) {
     throw new Error("Undefined argument `password`.");
   }
 
-  const user = await this.findOne({ email });
+  const user = await this.findOne({ email }).populate("accounts", "_id");
 
   if (!user) {
     throw new Error("Invalid email or password.");
