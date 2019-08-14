@@ -9,6 +9,7 @@ import UserQueries from "./queries/user";
 import SiteMutations from "./mutations/site";
 import StylesheetMutations from "./mutations/stylesheet";
 import UserMutations from "./mutations/user";
+import AccountMutations from "./mutations/account";
 
 // import group export of typeDefs
 import typeDefs from "./types";
@@ -22,7 +23,8 @@ const resolvers = merge(
   SiteMutations,
   StylesheetMutations,
   UserQueries,
-  UserMutations
+  UserMutations,
+  AccountMutations
 );
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
