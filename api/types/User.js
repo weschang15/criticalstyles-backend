@@ -2,10 +2,11 @@ import { gql } from "apollo-server-express";
 
 const User = gql`
   type User {
-    id: ID!
+    _id: ID!
     firstName: String!
     lastName: String!
     email: String!
+    accounts: [Account!]!
   }
 
   input NewUserInput {
