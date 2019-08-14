@@ -6,6 +6,7 @@ const AccountSchema = new _Schema({
     trim: true,
     required: true
   },
+  owner: { type: Types.ObjectId, ref: "User" },
   users: [{ type: Types.ObjectId, ref: "User" }],
   sites: [{ type: Types.ObjectId, ref: "Site" }]
 });
