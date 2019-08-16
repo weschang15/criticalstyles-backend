@@ -3,6 +3,7 @@ import { applyMiddleware } from "graphql-middleware";
 import merge from "lodash/merge";
 
 // import query resolvers
+import AccountQueries from "./queries/account";
 import UserQueries from "./queries/user";
 
 // import mutation resolvers
@@ -24,6 +25,7 @@ const resolvers = merge(
   StylesheetMutations,
   UserQueries,
   UserMutations,
+  AccountQueries,
   AccountMutations
 );
 

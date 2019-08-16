@@ -20,8 +20,12 @@ const Account = gql`
     user: NewUserInput!
   }
 
+  input AccountInput {
+    id: String
+  }
+
   extend type Query {
-    getAccount: AccountResponse!
+    getAccount(input: AccountInput): AccountResponse
   }
 
   extend type Mutation {
