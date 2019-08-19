@@ -5,35 +5,28 @@ const createAccount = async (
   { input },
   { models: { Account, User }, session }
 ) => {
-  async function createNewUser(newUserInput) {
-    const newUser = new User({ ...newUserInput });
-    const user = await newUser.save();
-    return user;
+  async function register({ name, user: userInput }) {
+    const newUser = new User({ ...userInput });
+    const newAcc = new Account({ name, owner: newUser });
+
+    const [user, account] = await Promise.all([newUser.save(), newAcc.save()]);
+    await user.updateOne({ $push: { accounts: account } });
+
+    return account;
   }
 
-  async function createNewAccount(name, owner) {
-    const newAccount = new Account({ name, owner });
-    const account = await newAccount.save();
-    await owner.updateOne({ $push: { accounts: account } });
+  const [error, account] = await withCatch(register(input));
 
-    return account.populate("owner", "-password");
+  if (error) {
+    return { ok: false, errors: extractErrors(error) };
   }
 
-  const [userError, user] = await withCatch(createNewUser(input.user));
-  if (userError) {
-    return { ok: false, errors: extractErrors(userError) };
-  }
+  const owner = account.owner.toJSON();
+  const acc = account.toJSON();
 
-  const [accError, account] = await withCatch(
-    createNewAccount(input.name, user)
-  );
-
-  if (accError) {
-    return { ok: false, errors: extractErrors(accError) };
-  }
-
-  session.user = user.toJSON();
-  return { ok: true, account };
+  session.user = owner;
+  session.account = acc;
+  return { ok: true, account: acc, owner };
 };
 
 export default createAccount;
