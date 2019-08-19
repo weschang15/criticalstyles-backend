@@ -3,7 +3,11 @@ import { getConfig } from "../../utils";
 const config = getConfig("mongo");
 
 mongoose
-  .connect(config.uri, { useNewUrlParser: true, useCreateIndex: true })
+  .connect(config.uri, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  })
   .then(() => {
     console.log(`Mongoose is connected`);
   })

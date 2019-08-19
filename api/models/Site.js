@@ -6,6 +6,11 @@ const SiteSchema = new _Schema({
     required: true,
     trim: true
   },
+  slug: {
+    type: String,
+    slug: "name",
+    unique: true
+  },
   pages: [{ type: Types.ObjectId, ref: "Page" }],
   url: {
     type: String,

@@ -2,9 +2,10 @@ import { gql } from "apollo-server-express";
 
 const Site = gql`
   type Site {
-    id: ID!
+    _id: ID!
     name: String!
     url: String!
+    slug: String!
   }
 
   type NewSiteResponse {
@@ -16,6 +17,7 @@ const Site = gql`
   input NewSiteInput {
     name: String!
     url: String!
+    accountId: String!
   }
 
   extend type Mutation {
