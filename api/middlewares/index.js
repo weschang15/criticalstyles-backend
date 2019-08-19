@@ -8,7 +8,6 @@ import logUser from "./loggers/logUser";
 import logUrl from "./loggers/logUrl";
 import logAccount from "./loggers/logAccount";
 import hydrateUser from "./auth/hydrateUser";
-import hydrateAcc from "./auth/hydrateAcc";
 
 const middlewares = Router();
 
