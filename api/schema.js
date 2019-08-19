@@ -3,10 +3,12 @@ import { applyMiddleware } from "graphql-middleware";
 import merge from "lodash/merge";
 
 // import query resolvers
+import AuthQueries from "./queries/auth";
 import AccountQueries from "./queries/account";
 import UserQueries from "./queries/user";
 
 // import mutation resolvers
+import AuthMutations from "./mutations/auth";
 import SiteMutations from "./mutations/site";
 import StylesheetMutations from "./mutations/stylesheet";
 import UserMutations from "./mutations/user";
@@ -21,6 +23,8 @@ import resolverMiddleware from "./middlewares/resolverMiddleware";
 // merged resolvers
 const resolvers = merge(
   {},
+  AuthQueries,
+  AuthMutations,
   SiteMutations,
   StylesheetMutations,
   UserQueries,
