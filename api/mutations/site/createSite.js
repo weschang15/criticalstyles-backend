@@ -9,12 +9,21 @@ import { withCatch, extractErrors } from "../../../utils";
  * @param {Object} info metadata
  * @return {Object}
  */
-const mutation = async (_, { input }, { models: { Site }, user }, info) => {
+const mutation = async (
+  _,
+  { input },
+  { models: { Account, Site }, user },
+  info
+) => {
   async function createSite(input) {
-    const newSite = new Site({ ...input });
+    const { accountId, ...rest } = input;
+    const newSite = new Site({ ...rest });
 
     const site = await newSite.save();
-    await user.updateOne({ $push: { sites: site } });
+    await Promise.all([
+      user.updateOne({ $push: { sites: site } }),
+      Account.findByIdAndUpdate(accountId, { $push: { sites: site } })
+    ]);
 
     return site;
   }
