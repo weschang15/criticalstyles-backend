@@ -5,8 +5,13 @@ const Account = gql`
     _id: ID!
     name: String!
     owner: User!
-    users: [User!]!
-    sites: [Site!]!
+    users(uf: Filter): [User!]!
+    sites(sf: Filter): [Site!]!
+  }
+
+  input Filter {
+    limit: Int
+    after: String
   }
 
   type AccountResponse {
@@ -25,11 +30,18 @@ const Account = gql`
   }
 
   extend type Query {
-    getAccount(input: AccountInput): AccountResponse
+    getAccount(input: AccountInput): AccountResponse!
+  }
+
+  type NewAccountResponse {
+    ok: Boolean!
+    errors: [Error!]
+    account: Account
+    owner: User
   }
 
   extend type Mutation {
-    createAccount(input: NewAccountInput!): AccountResponse!
+    createAccount(input: NewAccountInput!): NewAccountResponse!
   }
 `;
 
