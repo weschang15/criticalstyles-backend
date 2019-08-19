@@ -7,6 +7,7 @@ import Viewport from "./Viewport";
 import Response from "./Response";
 import User from "./User";
 import Account from "./Account";
+import Auth from "./Auth";
 
 export default [
   Root,
@@ -17,5 +18,6 @@ export default [
   Stylesheet,
   Viewport,
   User,
-  Account
+  Account,
+  Auth
 ];

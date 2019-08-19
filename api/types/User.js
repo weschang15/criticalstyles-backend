@@ -22,11 +22,6 @@ const User = gql`
     user: User
   }
 
-  input LoginInput {
-    email: String!
-    password: String!
-  }
-
   type CurrentUserResponse {
     ok: Boolean!
     errors: [Error!]
@@ -39,8 +34,6 @@ const User = gql`
 
   extend type Mutation {
     createUser(input: NewUserInput!): UserResponse!
-    login(input: LoginInput!): UserResponse!
-    logout: Response!
   }
 `;
 
