@@ -1,4 +1,8 @@
 import { withCatch, extractErrors } from "../../../utils";
+import createPubsub from "../../../shared/redis/createPubSub";
+import { SITE_ADDED } from "../../../shared/redis/events";
+
+const pubsub = createPubsub();
 
 /**
  * Mutation resolver for creating a new Site document for storing organizing, and maintaining CCSS
@@ -12,7 +16,7 @@ import { withCatch, extractErrors } from "../../../utils";
 const mutation = async (
   _,
   { input },
-  { models: { Account, Site }, user },
+  { models: { Account, Site }, session, user },
   info
 ) => {
   async function createSite(input) {
@@ -33,6 +37,11 @@ const mutation = async (
   if (error) {
     return { ok: false, errors: extractErrors(error) };
   }
+
+  pubsub.publish(SITE_ADDED, {
+    accountId: session.account._id,
+    siteAdded: site
+  });
 
   return { ok: true, site };
 };

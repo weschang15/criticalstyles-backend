@@ -20,6 +20,10 @@ const Site = gql`
     accountId: String!
   }
 
+  extend type Subscription {
+    siteAdded(accountId: String!): Site
+  }
+
   extend type Mutation {
     createSite(input: NewSiteInput!): NewSiteResponse!
   }

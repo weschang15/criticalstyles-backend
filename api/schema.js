@@ -14,6 +14,9 @@ import StylesheetMutations from "./mutations/stylesheet";
 import UserMutations from "./mutations/user";
 import AccountMutations from "./mutations/account";
 
+// import subscription resolvers
+import SiteSubscriptions from "./subscriptions/site";
+
 // import group export of typeDefs
 import typeDefs from "./types";
 
@@ -25,6 +28,7 @@ const resolvers = merge(
   {},
   AuthQueries,
   AuthMutations,
+  SiteSubscriptions,
   SiteMutations,
   StylesheetMutations,
   UserQueries,
