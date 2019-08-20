@@ -1,4 +1,5 @@
 import { ApolloServer } from "apollo-server-express";
+import getCurrentSession from "./middlewares/auth/getCurrentSession";
 import * as models from "./models";
 import schema from "./schema";
 
@@ -11,18 +12,27 @@ import schema from "./schema";
  * @param {Object} args.connection Websocket connection query
  * @return {Object} our resolver context for either Queries & Mutations or Subscriptions
  */
-const context = ({ req, res, connection }) => ({
-  ip: req.ip,
-  models,
-  req,
-  res,
-  session: req.session,
-  user: req.user
-});
+const context = ({ req, res, connection }) => {
+  if (connection) {
+    return connection.context;
+  } else {
+    return {
+      ip: req.ip,
+      models,
+      req,
+      res,
+      session: req.session,
+      user: req.user
+    };
+  }
+};
+
+const onConnect = (_, ws) => getCurrentSession(ws.upgradeReq);
 
 const apollo = new ApolloServer({
   schema,
-  context
+  context,
+  subscriptions: { onConnect }
 });
 
 export default apollo;
