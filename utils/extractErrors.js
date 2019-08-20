@@ -1,6 +1,10 @@
 import { DatabaseError } from "../api/models";
 
 const extractErrors = e => {
+  if (e.name === "ValidationError") {
+    return e.inner.map(({ path, message }) => ({ path, message }));
+  }
+
   if (e instanceof DatabaseError) {
     if ("errors" in e) {
       return Object.values(e.errors).map(err => ({
