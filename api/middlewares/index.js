@@ -6,7 +6,6 @@ import { isDev } from "../../config";
 import logSession from "./loggers/logSession";
 import logUser from "./loggers/logUser";
 import logUrl from "./loggers/logUrl";
-import logAccount from "./loggers/logAccount";
 import hydrateUser from "./auth/hydrateUser";
 
 const middlewares = Router();
@@ -22,7 +21,6 @@ if (isDev()) {
   middlewares.use(logUrl);
   middlewares.use(logSession);
   middlewares.use(logUser);
-  middlewares.use(logAccount);
 }
 
 export default middlewares;
