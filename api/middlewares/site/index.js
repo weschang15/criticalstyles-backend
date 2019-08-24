@@ -6,10 +6,6 @@ const schema = object().shape({
   name: string()
     .trim()
     .required(),
-  url: string()
-    .trim()
-    .url()
-    .required(),
   accountId: string()
     .trim()
     .required()
