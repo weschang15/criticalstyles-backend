@@ -9,6 +9,9 @@ const schema = object().shape({
   url: string()
     .trim()
     .url()
+    .required(),
+  siteId: string()
+    .trim()
     .required()
 });
 

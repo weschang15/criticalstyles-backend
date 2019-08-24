@@ -17,6 +17,7 @@ import UserMutations from "./mutations/user";
 import AccountMutations from "./mutations/account";
 
 // import subscription resolvers
+import PageSubscriptions from "./subscriptions/page";
 import SiteSubscriptions from "./subscriptions/site";
 
 // import group export of typeDefs
@@ -33,6 +34,7 @@ const resolvers = merge(
   AuthMutations,
   AuthQueries,
   PageMutations,
+  PageSubscriptions,
   SiteMutations,
   SiteQueries,
   SiteSubscriptions,

@@ -16,6 +16,7 @@ const Page = gql`
 
   input NewPageInput {
     name: String!
+    siteId: String!
     url: String!
     viewport: [Int!]
   }
