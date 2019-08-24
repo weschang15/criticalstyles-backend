@@ -21,13 +21,10 @@ const mutation = async (
 ) => {
   async function createSite(input) {
     const { accountId, ...rest } = input;
-    const newSite = new Site({ ...rest });
+    const newSite = new Site({ ...rest, owner: user });
 
     const site = await newSite.save();
-    await Promise.all([
-      user.updateOne({ $push: { sites: site } }),
-      Account.findByIdAndUpdate(accountId, { $push: { sites: site } })
-    ]);
+    await Account.findByIdAndUpdate(accountId, { $push: { sites: site } });
 
     return site;
   }
