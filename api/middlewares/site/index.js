@@ -12,6 +12,11 @@ const schema = object().shape({
 });
 
 const middleware = {
+  Query: {
+    getSite: requireUser((resolve, parent, args, context, info) => {
+      return resolve(parent, args, context, info);
+    })
+  },
   Mutation: {
     createSite: requireUser(async (resolve, parent, args, context, info) => {
       const validate = input => schema.validate(input, { abortEarly: false });
