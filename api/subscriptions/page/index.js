@@ -10,7 +10,8 @@ const subscriptions = {
       subscribe: withFilter(
         () => pubsub.asyncIterator(PAGE_ADDED),
         (payload, args) =>
-          payload.accountId === args.accountId && payload.siteId === args.siteId
+          payload.accountId === args.input.accountId &&
+          payload.siteId === args.input.siteId
       )
     }
   }
