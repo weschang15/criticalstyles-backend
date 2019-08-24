@@ -12,12 +12,7 @@ const SiteSchema = new _Schema({
     unique: true
   },
   pages: [{ type: Types.ObjectId, ref: "Page" }],
-  url: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  _owner: { type: Types.ObjectId, ref: "User" }
+  owner: { type: Types.ObjectId, ref: "User" }
 });
 
 export default createModel("Site", SiteSchema);
