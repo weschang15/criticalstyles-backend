@@ -24,7 +24,8 @@ const PageSchema = new _Schema({
     required: true,
     unique: true,
     trim: true
-  }
+  },
+  site: { type: Types.ObjectId, ref: "Site" }
 });
 
 export default createModel("Page", PageSchema);
