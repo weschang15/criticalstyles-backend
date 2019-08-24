@@ -6,6 +6,7 @@ const Site = gql`
     name: String!
     url: String!
     slug: String!
+    pages: [Page!]!
   }
 
   type NewSiteResponse {
@@ -16,7 +17,6 @@ const Site = gql`
 
   input NewSiteInput {
     name: String!
-    url: String!
     accountId: String!
   }
 
