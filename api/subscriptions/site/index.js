@@ -9,7 +9,7 @@ const subscriptions = {
     siteAdded: {
       subscribe: withFilter(
         () => pubsub.asyncIterator(SITE_ADDED),
-        (rootValue, args) => rootValue.account._id === args.accountId
+        (payload, args) => payload.accountId === args.accountId
       )
     }
   }
