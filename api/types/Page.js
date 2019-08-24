@@ -11,7 +11,7 @@ const Page = gql`
   type PageResponse {
     ok: Boolean!
     errors: [Error!]
-    Page: Page
+    page: Page
   }
 
   input NewPageInput {
