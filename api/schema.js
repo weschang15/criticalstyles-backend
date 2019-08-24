@@ -10,6 +10,7 @@ import UserQueries from "./queries/user";
 
 // import mutation resolvers
 import AuthMutations from "./mutations/auth";
+import PageMutations from "./mutations/page";
 import SiteMutations from "./mutations/site";
 import StylesheetMutations from "./mutations/stylesheet";
 import UserMutations from "./mutations/user";
@@ -31,6 +32,7 @@ const resolvers = merge(
   AccountQueries,
   AuthMutations,
   AuthQueries,
+  PageMutations,
   SiteMutations,
   SiteQueries,
   SiteSubscriptions,
