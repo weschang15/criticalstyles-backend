@@ -6,7 +6,7 @@ import Response from "./Response";
 import Root from "./Root";
 import Site from "./Site";
 import Stylesheet from "./Stylesheet";
-import StylesheetInfo from "./StylesheetInfo";
+import StylesheetStats from "./StylesheetStats";
 import User from "./User";
 import Viewport from "./Viewport";
 
@@ -19,7 +19,7 @@ export default [
   Root,
   Site,
   Stylesheet,
-  StylesheetInfo,
+  StylesheetStats,
   User,
   Viewport
 ];
