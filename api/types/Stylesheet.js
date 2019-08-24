@@ -3,7 +3,7 @@ import { gql } from "apollo-server-express";
 const Stylesheet = gql`
   type Stylesheet {
     styles: String!
-    info: StylesheetInfo!
+    stats: StylesheetStats!
   }
 
   type CreateStylesheetResponse {
@@ -13,6 +13,7 @@ const Stylesheet = gql`
   }
 
   input NewStylesheetInput {
+    siteId: String!
     url: String!
     viewport: [Int!]
   }

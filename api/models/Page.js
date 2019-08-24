@@ -1,24 +1,22 @@
 import { createModel, _Schema, Types } from "./Utils";
 
-const StylesheetSchema = new _Schema({
-  styles: {
-    type: String,
-    required: true
-  },
-  info: {
-    minifiedSize: Types.Decimal128,
-    originalSize: Types.Decimal128,
-    viewport: [Number]
-  }
-});
-
 const PageSchema = new _Schema({
   name: {
     type: String,
     required: true,
     trim: true
   },
-  stylesheet: StylesheetSchema,
+  stylesheet: {
+    styles: {
+      type: String,
+      required: true
+    },
+    stats: {
+      minifiedSize: Number,
+      originalSize: Number,
+      viewport: [Number]
+    }
+  },
   url: {
     type: String,
     required: true,
