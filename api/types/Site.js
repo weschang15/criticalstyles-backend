@@ -9,7 +9,7 @@ const Site = gql`
     pages: [Page!]!
   }
 
-  type NewSiteResponse {
+  type SiteReponse {
     ok: Boolean!
     errors: [Error!]
     site: Site
@@ -20,12 +20,20 @@ const Site = gql`
     accountId: String!
   }
 
+  input GetSiteInput {
+    slug: String!
+  }
+
+  extend type Query {
+    getSite(input: GetSiteInput!): SiteReponse!
+  }
+
   extend type Subscription {
     siteAdded(accountId: String!): Site
   }
 
   extend type Mutation {
-    createSite(input: NewSiteInput!): NewSiteResponse!
+    createSite(input: NewSiteInput!): SiteReponse!
   }
 `;
 
