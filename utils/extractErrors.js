@@ -1,4 +1,5 @@
 import { DatabaseError } from "../api/models";
+import { isDev } from "../config";
 
 const extractErrors = e => {
   if (e.name === "ValidationError") {
@@ -15,7 +16,9 @@ const extractErrors = e => {
   }
 
   if (e instanceof Error) {
-    return [{ path: "name", message: e.message || "Something went wrong" }];
+    return [
+      { path: "name", message: isDev() ? e.message : "Something went wrong" }
+    ];
   }
 };
 
