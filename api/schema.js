@@ -1,30 +1,26 @@
 import { makeExecutableSchema } from "apollo-server-express";
 import { applyMiddleware } from "graphql-middleware";
 import merge from "lodash/merge";
-
-// import query resolvers
-import AccountQueries from "./queries/account";
-import AuthQueries from "./queries/auth";
-import SiteQueries from "./queries/site";
-import UserQueries from "./queries/user";
-
+// import resolver validation middlewares
+import resolverMiddleware from "./middlewares/resolverMiddleware";
+import AccountMutations from "./mutations/account";
 // import mutation resolvers
 import AuthMutations from "./mutations/auth";
 import PageMutations from "./mutations/page";
 import SiteMutations from "./mutations/site";
 import StylesheetMutations from "./mutations/stylesheet";
 import UserMutations from "./mutations/user";
-import AccountMutations from "./mutations/account";
-
+// import query resolvers
+import AccountQueries from "./queries/account";
+import AuthQueries from "./queries/auth";
+import PageQueries from "./queries/page";
+import SiteQueries from "./queries/site";
+import UserQueries from "./queries/user";
 // import subscription resolvers
 import PageSubscriptions from "./subscriptions/page";
 import SiteSubscriptions from "./subscriptions/site";
-
 // import group export of typeDefs
 import typeDefs from "./types";
-
-// import resolver validation middlewares
-import resolverMiddleware from "./middlewares/resolverMiddleware";
 
 // merged resolvers
 const resolvers = merge(
@@ -33,6 +29,7 @@ const resolvers = merge(
   AccountQueries,
   AuthMutations,
   AuthQueries,
+  PageQueries,
   PageMutations,
   PageSubscriptions,
   SiteMutations,

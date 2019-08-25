@@ -6,12 +6,25 @@ const Page = gql`
     name: String!
     url: String!
     stylesheet: Stylesheet!
+    createdAt: Date!
   }
 
   type PageResponse {
     ok: Boolean!
     errors: [Error!]
     page: Page
+  }
+
+  type GetPagesResponse {
+    ok: Boolean!
+    errors: [Error!]
+    documents: [Page!]!
+    queryInfo: QueryInfo!
+  }
+
+  input GetPagesInput {
+    siteId: String!
+    after: String
   }
 
   input NewPageInput {
@@ -24,6 +37,10 @@ const Page = gql`
   input PageAddedInput {
     accountId: String!
     siteId: String!
+  }
+
+  extend type Query {
+    pages(input: GetPagesInput!): GetPagesResponse!
   }
 
   extend type Mutation {
