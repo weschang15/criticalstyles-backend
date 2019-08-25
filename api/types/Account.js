@@ -40,8 +40,14 @@ const Account = gql`
     owner: User
   }
 
+  input NewAccountUserInput {
+    email: String!
+    accountId: String!
+  }
+
   extend type Mutation {
     createAccount(input: NewAccountInput!): NewAccountResponse!
+    addUser(input: NewAccountUserInput!): Response!
   }
 `;
 
