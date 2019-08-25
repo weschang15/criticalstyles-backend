@@ -1,7 +1,7 @@
-import { withCatch, extractErrors } from "../../../utils";
-import { cleanCSS, penthouse } from "../../services";
 import createPubsub from "../../../shared/redis/createPubSub";
 import { PAGE_ADDED } from "../../../shared/redis/events";
+import { extractErrors, withCatch } from "../../../utils";
+import { cleanCSS, penthouse } from "../../services";
 
 const pubsub = createPubsub();
 
@@ -30,7 +30,12 @@ const mutation = async (
       Site.findById(siteId)
     ]);
 
-    const newPage = new Page({ name, url, stylesheet: { styles, stats } });
+    const newPage = new Page({
+      name,
+      url,
+      site: siteId,
+      stylesheet: { styles, stats }
+    });
     await site.updateOne({ $push: { pages: newPage } });
 
     return newPage.save();
