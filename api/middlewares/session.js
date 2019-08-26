@@ -7,9 +7,6 @@ const RedisStore = connectRedis(session);
 const client = createRedis();
 const store = new RedisStore({ client });
 
-console.log("environment is: ");
-console.log(isProd());
-
 const middleware = session({
   secret: sessionSecret,
   key: sessionKey,
@@ -20,7 +17,7 @@ const middleware = session({
     httpOnly: isProd(),
     maxAge: 1000 * 60 * 60 * 24 * 7,
     secure: isProd(),
-    domain: isProd() ? `.criticalstyles.com` : `.criticalstyles.com`
+    domain: isProd() ? `.${sessionKey}.com` : null
   }
 });
 
