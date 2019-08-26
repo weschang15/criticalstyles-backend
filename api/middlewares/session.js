@@ -1,5 +1,5 @@
-import session from "express-session";
 import connectRedis from "connect-redis";
+import session from "express-session";
 import { isProd, sessionKey, sessionSecret } from "../../config";
 import createRedis from "../../shared/redis/createRedis";
 
@@ -17,7 +17,7 @@ const middleware = session({
     httpOnly: isProd(),
     maxAge: 1000 * 60 * 60 * 24 * 7,
     secure: isProd(),
-    domain: isProd() ? `.${sessionKey}.com` : null
+    domain: isProd() ? `${sessionKey}.com` : null
   }
 });
 
