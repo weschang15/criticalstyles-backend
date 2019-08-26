@@ -16,8 +16,7 @@ const middleware = session({
   cookie: {
     httpOnly: isProd(),
     maxAge: 1000 * 60 * 60 * 24 * 7,
-    secure: isProd(),
-    domain: isProd() ? `${sessionKey}.com` : null
+    secure: isProd()
   }
 });
 
