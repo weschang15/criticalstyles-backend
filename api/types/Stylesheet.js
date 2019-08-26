@@ -13,7 +13,6 @@ const Stylesheet = gql`
   }
 
   input NewStylesheetInput {
-    siteId: String!
     url: String!
     viewport: [Int!]
   }
