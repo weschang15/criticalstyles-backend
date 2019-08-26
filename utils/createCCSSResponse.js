@@ -1,6 +1,6 @@
 const createCCSSResponse = data => ({
   styles: data.styles,
-  info: data.stats
+  stats: data.stats
 });
 
 export default createCCSSResponse;
