@@ -7,6 +7,9 @@ const RedisStore = connectRedis(session);
 const client = createRedis();
 const store = new RedisStore({ client });
 
+console.log("environment is: ");
+console.log(isProd());
+
 const middleware = session({
   secret: sessionSecret,
   key: sessionKey,
