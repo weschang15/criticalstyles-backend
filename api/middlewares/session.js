@@ -13,10 +13,12 @@ const middleware = session({
   resave: false,
   saveUninitialized: false,
   store,
+  proxy: true,
   cookie: {
     httpOnly: isProd(),
     maxAge: 1000 * 60 * 60 * 24 * 7,
-    secure: isProd()
+    secure: isProd(),
+    domain: isProd() ? `.${sessionKey}.com` : null
   }
 });
 
