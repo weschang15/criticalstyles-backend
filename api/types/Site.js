@@ -7,6 +7,7 @@ const Site = gql`
     url: String!
     slug: String!
     pages: [Page!]!
+    createdAt: Date!
   }
 
   type SiteReponse {
