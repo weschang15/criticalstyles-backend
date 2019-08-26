@@ -1,5 +1,5 @@
 import { object, string } from "yup";
-import { withCatch, extractErrors } from "../../../utils";
+import { extractErrors, withCatch } from "../../../utils";
 
 const schema = object().shape({
   name: string()
@@ -27,10 +27,12 @@ const middleware = {
     createAccount: async (resolve, parent, args, context, info) => {
       const input = { name: args.input.name, ...args.input.user };
       const validate = () => schema.validate(input, { abortEarly: false });
-      const [err] = await withCatch(validate());
+      const [err, result] = await withCatch(validate());
 
       if (err) return { ok: false, errors: extractErrors(err) };
-      return resolve(parent, args, context, info);
+
+      const updatedArgs = { ...args, input: { ...args.input, ...result } };
+      return resolve(parent, updatedArgs, context, info);
     }
   }
 };

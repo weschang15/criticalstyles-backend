@@ -14,7 +14,7 @@ const resolver = async (_, { input }, { models: { Page } }, info) => {
 
   const [error, [total, documents]] = await withCatch(
     Promise.all([
-      Page.countDocuments({ site: siteId }),
+      Page.count({ site: siteId }),
       Page.find(query)
         .limit(10)
         .sort({ createdAt: -1 })

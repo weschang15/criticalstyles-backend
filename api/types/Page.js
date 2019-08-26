@@ -18,8 +18,8 @@ const Page = gql`
   type GetPagesResponse {
     ok: Boolean!
     errors: [Error!]
-    documents: [Page!]!
-    queryInfo: QueryInfo!
+    documents: [Page!]
+    queryInfo: QueryInfo
   }
 
   input GetPagesInput {

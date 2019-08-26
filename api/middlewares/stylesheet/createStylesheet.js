@@ -1,12 +1,25 @@
+import { object, string } from "yup";
+import { createCCSSResponse, extractErrors, withCatch } from "../../../utils";
 import { Cache } from "../../services";
-import { createCCSSResponse, withCatch, extractErrors } from "../../../utils";
+import requireUser from "../auth/requireUser";
 
-const middleware = async (resolve, parent, args, context, info) => {
+const schema = object().shape({
+  url: string()
+    .trim()
+    .url()
+    .required()
+});
+
+export default requireUser(async (resolve, parent, args, context, info) => {
   const cache = new Cache();
-  const {
-    input: { url }
-  } = args;
+  const validate = input => schema.validate(input, { abortEarly: false });
+  const [validationError, result] = await withCatch(validate(args.input));
 
+  if (validationError) {
+    return { ok: false, errors: extractErrors(validationError) };
+  }
+
+  const { url } = result;
   const getCachedStyles = targetURL => cache.get(targetURL);
   const [error, response] = await withCatch(getCachedStyles(url));
 
@@ -19,7 +32,6 @@ const middleware = async (resolve, parent, args, context, info) => {
     return { ok: true, stylesheet };
   }
 
-  return resolve(parent, args, context, info);
-};
-
-export default middleware;
+  const updatedArgs = { ...args, input: { ...args.input, ...result } };
+  return resolve(parent, updatedArgs, context, info);
+});
