@@ -1,6 +1,6 @@
-import { withCatch, extractErrors } from "../../../utils";
+import { extractErrors, withCatch } from "../../../utils";
 
-const login = async (_, { input }, { models: { User }, session }) => {
+const login = async (_, { input }, { models: { User }, req }) => {
   const authenticate = params => User.authenticate({ ...params });
   const [error, { user, account }] = await withCatch(authenticate(input));
 
@@ -8,8 +8,8 @@ const login = async (_, { input }, { models: { User }, session }) => {
     return { ok: false, errors: extractErrors(error) };
   }
 
-  session.user = user;
-  session.account = account;
+  req.session.user = user;
+  req.session.account = account;
   return { ok: true, auth: { user, account } };
 };
 
