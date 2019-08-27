@@ -11,6 +11,9 @@ export const env = NODE_ENV;
 export const port = PORT || 2935;
 export const sessionSecret = SESSION_SECRET || "dev_secret";
 export const sessionKey = SESSION_KEY || "criticalstyles";
+export const publicDomain = isDev()
+  ? "http://localhost:3001"
+  : "https://criticalstyles.com";
 
 const config = {
   isDev,
@@ -19,7 +22,8 @@ const config = {
   env,
   port,
   sessionKey,
-  sessionSecret
+  sessionSecret,
+  publicDomain
 };
 
 export default config;
