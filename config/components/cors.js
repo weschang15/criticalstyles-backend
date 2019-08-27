@@ -5,11 +5,7 @@ const config = {
       credentials: true
     },
     production: {
-      origin: [
-        "https://criticalstyles.com",
-        "https://my.criticalstyles.com",
-        "https://www.criticalstyles.com"
-      ],
+      origin: [/\.criticalstyles\.com$/],
       credentials: true
     }
   }
