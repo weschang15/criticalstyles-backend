@@ -45,9 +45,14 @@ const Account = gql`
     accountId: String!
   }
 
+  input SwitchAccountInput {
+    accountId: String!
+  }
+
   extend type Mutation {
     createAccount(input: NewAccountInput!): NewAccountResponse!
     addUser(input: NewAccountUserInput!): Response!
+    switchAccount(input: SwitchAccountInput!): Response!
   }
 `;
 
