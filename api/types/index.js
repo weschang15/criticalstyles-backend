@@ -2,6 +2,7 @@ import Account from "./Account";
 import Auth from "./Auth";
 import date from "./Date";
 import error from "./Error";
+import Notification from "./Notification";
 import Page from "./Page";
 import QueryInfo from "./QueryInfo";
 import Response from "./Response";
@@ -17,6 +18,7 @@ export default [
   Auth,
   date,
   error,
+  Notification,
   Page,
   Response,
   Root,
