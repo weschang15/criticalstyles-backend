@@ -33,8 +33,13 @@ const Site = gql`
     siteAdded(accountId: String!): Site
   }
 
+  input DeleteSiteInput {
+    _id: String!
+  }
+
   extend type Mutation {
     createSite(input: NewSiteInput!): SiteReponse!
+    deleteSite(input: DeleteSiteInput!): Response!
   }
 `;
 

@@ -1,4 +1,5 @@
 import createSite from "./createSite";
+import deleteSite from "./deleteSite";
 import getSite from "./getSite";
 
 const middleware = {
@@ -6,7 +7,8 @@ const middleware = {
     getSite
   },
   Mutation: {
-    createSite
+    createSite,
+    deleteSite
   }
 };
 
