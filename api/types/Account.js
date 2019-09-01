@@ -7,6 +7,7 @@ const Account = gql`
     owner: User!
     users(uf: Filter): [User!]!
     sites(sf: Filter): [Site!]!
+    summary: AccountSummary!
   }
 
   input Filter {

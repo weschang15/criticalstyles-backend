@@ -1,4 +1,5 @@
 import Account from "./Account";
+import AccountSummary from "./AccountSummary";
 import Auth from "./Auth";
 import date from "./Date";
 import error from "./Error";
@@ -15,6 +16,7 @@ import Viewport from "./Viewport";
 
 export default [
   Account,
+  AccountSummary,
   Auth,
   date,
   error,
