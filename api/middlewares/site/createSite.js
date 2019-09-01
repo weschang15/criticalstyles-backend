@@ -5,9 +5,6 @@ import requireUser from "../auth/requireUser";
 const schema = object().shape({
   name: string()
     .trim()
-    .required(),
-  accountId: string()
-    .trim()
     .required()
 });
 

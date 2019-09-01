@@ -18,7 +18,6 @@ const Site = gql`
 
   input NewSiteInput {
     name: String!
-    accountId: String!
   }
 
   input GetSiteInput {

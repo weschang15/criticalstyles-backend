@@ -1,6 +1,6 @@
-import { withCatch, extractErrors } from "../../../utils";
 import createPubsub from "../../../shared/redis/createPubSub";
 import { SITE_ADDED } from "../../../shared/redis/events";
+import { extractErrors, withCatch } from "../../../utils";
 
 const pubsub = createPubsub();
 
@@ -16,15 +16,12 @@ const pubsub = createPubsub();
 const mutation = async (
   _,
   { input },
-  { models: { Account, Site }, session, user },
-  info
+  { models: { Site }, session, user, account }
 ) => {
   async function createSite(input) {
-    const { accountId, ...rest } = input;
-    const newSite = new Site({ ...rest, owner: user });
-
+    const { ...rest } = input;
+    const newSite = new Site({ ...rest, owner: user, account });
     const site = await newSite.save();
-    await Account.findByIdAndUpdate(accountId, { $push: { sites: site } });
 
     return site;
   }

@@ -22,7 +22,8 @@ const context = ({ req, res, connection }) => {
       req,
       res,
       session: req.session,
-      user: req.user
+      user: req.user,
+      account: req.account
     };
   }
 };
