@@ -10,11 +10,6 @@ const Account = gql`
     summary: AccountSummary!
   }
 
-  input Filter {
-    limit: Int
-    after: String
-  }
-
   type AccountResponse {
     ok: Boolean!
     errors: [Error!]

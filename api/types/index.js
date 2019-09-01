@@ -3,6 +3,7 @@ import AccountSummary from "./AccountSummary";
 import Auth from "./Auth";
 import date from "./Date";
 import error from "./Error";
+import Filter from "./Filter";
 import Notification from "./Notification";
 import Page from "./Page";
 import QueryInfo from "./QueryInfo";
@@ -20,6 +21,7 @@ export default [
   Auth,
   date,
   error,
+  Filter,
   Notification,
   Page,
   Response,
