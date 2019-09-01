@@ -1,5 +1,5 @@
-import { createModel, _Schema, Types } from "./Utils";
 import pick from "lodash/pick";
+import { createModel, Types, _Schema } from "./Utils";
 
 const AccountSchema = new _Schema({
   name: {
@@ -8,8 +8,7 @@ const AccountSchema = new _Schema({
     required: true
   },
   owner: { type: Types.ObjectId, ref: "User" },
-  users: [{ type: Types.ObjectId, ref: "User" }],
-  sites: [{ type: Types.ObjectId, ref: "Site" }]
+  users: [{ type: Types.ObjectId, ref: "User" }]
 });
 
 AccountSchema.methods.toJSON = function() {

@@ -5,8 +5,6 @@ const Account = gql`
     _id: ID!
     name: String!
     owner: User!
-    users(uf: Filter): [User!]!
-    sites(sf: Filter): [Site!]!
     summary: AccountSummary!
   }
 
@@ -26,7 +24,7 @@ const Account = gql`
   }
 
   extend type Query {
-    getAccount(input: AccountInput): AccountResponse!
+    getAccount: AccountResponse!
   }
 
   type NewAccountResponse {

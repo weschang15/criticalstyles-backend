@@ -1,16 +1,15 @@
-import { withCatch, extractErrors } from "../../../utils";
+import { extractErrors, withCatch } from "../../../utils";
 
-const getAccount = async (
-  _,
-  { input: { id } },
-  { models: { Account }, user }
-) => {
+const getAccount = async (_, args, { models: { Account }, session, user }) => {
   const [error, account] = await withCatch(
     Account.findOne(
       {
-        $and: [{ _id: id }, { $or: [{ owner: user._id }, { users: user._id }] }]
+        $and: [
+          { _id: session.account._id },
+          { $or: [{ owner: user._id }, { users: user._id }] }
+        ]
       },
-      "-sites -users",
+      "-users",
       { lean: true }
     )
   );
