@@ -19,6 +19,7 @@ import UserQueries from "./queries/user";
 // import subscription resolvers
 import PageSubscriptions from "./subscriptions/page";
 import SiteSubscriptions from "./subscriptions/site";
+import UserSubscriptions from "./subscriptions/user";
 // import group export of typeDefs
 import typeDefs from "./types";
 
@@ -37,7 +38,8 @@ const resolvers = merge(
   SiteSubscriptions,
   StylesheetMutations,
   UserMutations,
-  UserQueries
+  UserQueries,
+  UserSubscriptions
 );
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });

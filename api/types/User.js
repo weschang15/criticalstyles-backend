@@ -35,6 +35,10 @@ const User = gql`
   extend type Mutation {
     createUser(input: NewUserInput!): UserResponse!
   }
+
+  extend type Subscription {
+    userAdded(accountId: String!): User
+  }
 `;
 
 export default User;
