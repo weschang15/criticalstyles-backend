@@ -25,7 +25,15 @@ const Site = gql`
     slug: String!
   }
 
+  type SitesResponse {
+    ok: Boolean!
+    errors: [Error!]
+    documents: [Site!]
+    queryInfo: QueryInfo
+  }
+
   extend type Query {
+    sites(filter: Filter): SitesResponse!
     getSite(input: GetSiteInput!): SiteReponse!
   }
 
