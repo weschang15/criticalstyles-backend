@@ -1,6 +1,6 @@
 import { extractErrors } from "../../../utils";
 
-const requireAuth = fn => (resolve, parent, args, ctx, info) => {
+const requireUser = fn => (resolve, parent, args, ctx, info) => {
   try {
     const { session } = ctx;
     if (!session || !session.user) {
@@ -13,4 +13,4 @@ const requireAuth = fn => (resolve, parent, args, ctx, info) => {
   }
 };
 
-export default requireAuth;
+export default requireUser;

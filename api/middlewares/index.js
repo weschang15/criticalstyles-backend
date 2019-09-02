@@ -1,6 +1,7 @@
 import { json, Router, urlencoded } from "express";
 import helmet from "helmet";
 import { isDev } from "../../config";
+import arena from "./arena";
 import hydrateAccount from "./auth/hydrateAccount";
 import hydrateUser from "./auth/hydrateUser";
 import cors from "./cors";
@@ -25,6 +26,17 @@ if (isDev()) {
   middlewares.use(logSession);
   middlewares.use(logUser);
   middlewares.use(logAccount);
+  middlewares.use(
+    "/arena",
+    (req, res, next) => {
+      if (!req.session || !req.session.user) {
+        return res.send("Unauthenticated user.").end();
+      }
+
+      return next();
+    },
+    arena
+  );
 }
 
 export default middlewares;
