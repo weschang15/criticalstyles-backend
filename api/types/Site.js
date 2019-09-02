@@ -20,10 +20,6 @@ const Site = gql`
     name: String!
   }
 
-  input GetSiteInput {
-    slug: String!
-  }
-
   type SitesResponse {
     ok: Boolean!
     errors: [Error!]
@@ -33,7 +29,6 @@ const Site = gql`
 
   extend type Query {
     sites(filter: Filter): SitesResponse!
-    getSite(input: GetSiteInput!): SiteReponse!
   }
 
   extend type Subscription {
