@@ -1,8 +1,10 @@
 import createSite from "./createSite";
+import deleteSite from "./deleteSite";
 
 const mutations = {
   Mutation: {
-    createSite
+    createSite,
+    deleteSite
   }
 };
 

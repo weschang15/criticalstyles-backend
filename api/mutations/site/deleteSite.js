@@ -1,12 +1,16 @@
 import { extractErrors, withCatch } from "../../../utils";
 
-export default async (_, { input }, { Site }, info) => {
+export default async (_, { input }, { models: { Page, Site } }, info) => {
   const { _id } = input;
-  const [error, result] = await withCatch(Site.deleteOne({ _id }));
+  const [error, [ds, ps]] = await withCatch(
+    Promise.all([Site.deleteOne({ _id }), Page.deleteMany({ site: _id })])
+  );
 
-  const response = err
+  const count = ds.deletedCount + ps.deletedCount;
+
+  const response = error
     ? { ok: false, errors: extractErrors(error) }
-    : { ok: result.deletedCount };
+    : { ok: Boolean(count) };
 
   return response;
 };

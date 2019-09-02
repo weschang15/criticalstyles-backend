@@ -16,9 +16,4 @@ const SiteSchema = new _Schema({
   owner: { type: Types.ObjectId, ref: "User" }
 });
 
-SiteSchema.pre("deleteOne", async function() {
-  const site = this;
-  await Promise.all([Page.deleteMany({ site })]);
-});
-
 export default createModel("Site", SiteSchema);
