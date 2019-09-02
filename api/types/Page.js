@@ -35,8 +35,7 @@ const Page = gql`
   }
 
   input PageAddedInput {
-    accountId: String!
-    siteId: String!
+    pageId: String!
   }
 
   extend type Query {
@@ -49,6 +48,7 @@ const Page = gql`
 
   extend type Subscription {
     pageAdded(input: PageAddedInput!): Page
+    pageUpdated(input: PageAddedInput!): Page
   }
 `;
 
