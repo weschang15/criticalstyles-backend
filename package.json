@@ -27,6 +27,7 @@
   "dependencies": {
     "apollo-server-express": "^2.9.0",
     "argon2": "^0.24.0",
+    "bull": "^3.10.0",
     "cheerio": "^1.0.0-rc.3",
     "clean-css": "^4.2.1",
     "connect-redis": "^3.4.2",
