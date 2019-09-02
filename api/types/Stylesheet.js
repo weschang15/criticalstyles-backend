@@ -2,8 +2,8 @@ import { gql } from "apollo-server-express";
 
 const Stylesheet = gql`
   type Stylesheet {
-    styles: String!
-    stats: StylesheetStats!
+    styles: String
+    stats: StylesheetStats
   }
 
   type CreateStylesheetResponse {

@@ -1,4 +1,4 @@
-import { createModel, _Schema, Types } from "./Utils";
+import { createModel, Types, _Schema } from "./Utils";
 
 const PageSchema = new _Schema({
   name: {
@@ -8,8 +8,7 @@ const PageSchema = new _Schema({
   },
   stylesheet: {
     styles: {
-      type: String,
-      required: true
+      type: String
     },
     stats: {
       minifiedSize: Number,
