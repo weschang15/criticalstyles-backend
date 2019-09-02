@@ -1,6 +1,8 @@
 import createPubsub from "../../../shared/redis/createPubSub";
 import { PAGE_ADDED } from "../../../shared/redis/events";
 import { extractErrors, withCatch } from "../../../utils";
+import { serviceQueue } from "../../../worker/queues/service";
+import { SERVICE_QUEUE } from "../../../worker/queues/types";
 import { cleanCSS, penthouse } from "../../services";
 
 const pubsub = createPubsub();
@@ -25,23 +27,23 @@ const mutation = async (
   }
 
   async function createPage({ name, url, siteId, viewport }) {
-    const [{ styles, stats }, site] = await Promise.all([
-      generateStyles({ url, viewport }),
-      Site.findById(siteId)
-    ]);
+    const site = await Site.findById(siteId);
+    const newPage = new Page({ name, url, site });
 
-    const newPage = new Page({
-      name,
-      url,
-      site: siteId,
-      stylesheet: { styles, stats }
-    });
-    await site.updateOne({ $push: { pages: newPage } });
+    await Promise.all([
+      serviceQueue.queue.add(SERVICE_QUEUE, {
+        pageId: newPage._id,
+        pageUrl: newPage.url,
+        viewport
+      }),
+      site.updateOne({ $push: { pages: newPage } })
+    ]);
 
     return newPage.save();
   }
 
   const [error, page] = await withCatch(createPage(input));
+
   if (error) {
     return { ok: false, errors: extractErrors(error) };
   }
