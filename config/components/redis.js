@@ -7,6 +7,7 @@ const config = {
     },
     production: {
       url: process.env.REDIS_URL,
+      tls: true,
       retryStrategy: times => Math.max(times * 100, 3000)
     }
   }
