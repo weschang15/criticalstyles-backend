@@ -3,11 +3,12 @@ import { cleanCSS, penthouse } from "../../../api/services";
 
 async function handleProcess({ pageId, pageUrl, viewport }) {
   const { styles, stats } = cleanCSS(await penthouse(pageUrl, viewport));
-  const page = await Page.findByIdAndUpdate(pageId, {
+
+  await Page.findByIdAndUpdate(pageId, {
     stylesheet: { styles, stats }
   });
 
-  return page;
+  return pageId;
 }
 
 function process({ data }) {
