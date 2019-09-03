@@ -8,7 +8,7 @@
   "description": "Web application backend for a 2 step process to generate Critical CSS, for free.",
   "main": "start.js",
   "scripts": {
-    "start": "node -r esm -r dotenv/config start",
+    "start": "pm2-runtime start ecosystem.config.js --env production",
     "server": "nodemon -r esm -r dotenv/config start",
     "worker": "nodemon -r esm -r dotenv/config worker",
     "test:coverage": "jest --coverage --colors",
