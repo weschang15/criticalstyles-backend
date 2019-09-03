@@ -1,8 +1,8 @@
 const config = {
   redis: {
     development: {
-      url: process.env.REDIS_URL,
-      tls: true,
+      host: "localhost",
+      port: 6379,
       retryStrategy: times => Math.max(times * 100, 3000)
     },
     production: {
