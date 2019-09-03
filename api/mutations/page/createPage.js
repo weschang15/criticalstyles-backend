@@ -3,7 +3,6 @@ import { PAGE_ADDED } from "../../../shared/redis/events";
 import { extractErrors, withCatch } from "../../../utils";
 import { serviceQueue } from "../../../worker/queues/service";
 import { SERVICE_QUEUE } from "../../../worker/queues/types";
-import { cleanCSS, penthouse } from "../../services";
 
 const pubsub = createPubsub();
 
@@ -22,22 +21,10 @@ const mutation = async (
   { models: { Page, Site }, session },
   info
 ) => {
-  async function generateStyles({ url, viewport }) {
-    return cleanCSS(await penthouse(url, viewport));
-  }
-
-  async function createPage({ name, url, siteId, viewport }) {
+  async function createPage({ name, url, siteId }) {
     const site = await Site.findById(siteId);
     const newPage = new Page({ name, url, site });
-
-    await Promise.all([
-      serviceQueue.queue.add(SERVICE_QUEUE, {
-        pageId: newPage._id,
-        pageUrl: newPage.url,
-        viewport
-      }),
-      site.updateOne({ $push: { pages: newPage } })
-    ]);
+    await site.updateOne({ $push: { pages: newPage } });
 
     return newPage.save();
   }
@@ -47,6 +34,12 @@ const mutation = async (
   if (error) {
     return { ok: false, errors: extractErrors(error) };
   }
+
+  serviceQueue.queue.add(SERVICE_QUEUE, {
+    pageId: page._id,
+    pageUrl: page.url,
+    viewport: input.viewport
+  });
 
   pubsub.publish(PAGE_ADDED, {
     accountId: session.account._id,
