@@ -1,9 +1,7 @@
 import fetch from "node-fetch";
-import { withCatch } from "../../../utils";
-import { getStylesheets } from "./getStylesheets";
+import { removeDuplicates, withCatch } from "../../../utils";
 import { getHTML } from "./getHTML";
-import { removeExternalStylesheets } from "./removeExternalStylesheets";
-import { removeDuplicates } from "../../../utils";
+import { getStylesheets } from "./getStylesheets";
 
 /**
  * Retrieve stylesheets belonging to a specific URL. Will only retrieve CSS owned by website and not
@@ -14,12 +12,7 @@ import { removeDuplicates } from "../../../utils";
  */
 const getCSS = async url => {
   const getStylesheetUrls = async input =>
-    removeDuplicates(
-      removeExternalStylesheets(
-        input,
-        await getStylesheets(await getHTML(input))
-      )
-    );
+    removeDuplicates(await getStylesheets(await getHTML(input)));
 
   const getStylesheetPromises = stylesheets =>
     stylesheets.map(sheet => fetch(sheet).then(res => res.text()));
