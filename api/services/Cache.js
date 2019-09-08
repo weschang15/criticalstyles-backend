@@ -55,13 +55,14 @@ class Cache {
     const permittedModes = ["ex", "px", "nx", "xx"];
 
     if (
-      typeof expireyMode !== "string" ||
-      !permittedModes.includes(expireyMode)
+      expireyMode &&
+      typeof expireyMode === "string" &&
+      permittedModes.includes(expireyMode)
     ) {
-      throw new Error("Invalid Parameter `expireyMode`");
+      return this.redis.set(key, value, expireyMode, expireTime);
     }
 
-    return this.redis.set(key, value, expireyMode, expireTime);
+    return this.redis.set(key, value);
   }
 }
 
