@@ -11,7 +11,8 @@ const schema = object().shape({
 });
 
 export default requireUser(async (resolve, parent, args, context, info) => {
-  const cache = new Cache();
+  const cache = new Cache({ keyPrefix: "ccss:" });
+
   const validate = input => schema.validate(input, { abortEarly: false });
   const [validationError, result] = await withCatch(validate(args.input));
 

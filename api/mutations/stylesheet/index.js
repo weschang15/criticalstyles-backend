@@ -1,8 +1,8 @@
-import createStylesheet from "./createStylesheet";
+import createUncategorizedStylesheet from "./createUncategorizedStylesheet";
 
 const mutations = {
   Mutation: {
-    createStylesheet
+    createUncategorizedStylesheet
   }
 };
 

@@ -6,19 +6,21 @@ const Stylesheet = gql`
     stats: StylesheetStats
   }
 
-  type CreateStylesheetResponse {
+  type StylesheetResponse {
     ok: Boolean!
     errors: [Error!]
     stylesheet: Stylesheet
   }
 
-  input NewStylesheetInput {
+  input NewUncategorizedStylesheetInput {
     url: String!
     viewport: [Int!]
   }
 
   extend type Mutation {
-    createStylesheet(input: NewStylesheetInput!): CreateStylesheetResponse!
+    createUncategorizedStylesheet(
+      input: NewUncategorizedStylesheetInput!
+    ): StylesheetResponse!
   }
 `;
 
