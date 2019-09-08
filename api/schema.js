@@ -17,6 +17,7 @@ import PageQueries from "./queries/page";
 import SiteQueries from "./queries/site";
 import UserQueries from "./queries/user";
 // import subscription resolvers
+import NotificationSubscriptions from "./subscriptions/notification";
 import PageSubscriptions from "./subscriptions/page";
 import SiteSubscriptions from "./subscriptions/site";
 import UserSubscriptions from "./subscriptions/user";
@@ -30,6 +31,7 @@ const resolvers = merge(
   AccountQueries,
   AuthMutations,
   AuthQueries,
+  NotificationSubscriptions,
   PageQueries,
   PageMutations,
   PageSubscriptions,
