@@ -11,7 +11,7 @@ const NotificationSchema = new _Schema({
     required: true,
     default: false
   },
-  owner: { type: Types.ObjectId, ref: "User" }
+  account: { type: Types.ObjectId, ref: "Account" }
 });
 
 export default createModel("Notification", NotificationSchema);
