@@ -4,9 +4,9 @@ import listeners from "./listeners";
 
 const queue = createQueue(UNCATEGORIZED_SERVICE_QUEUE, {}, listeners);
 
-const serviceQueue = {
+const uncategorizedServiceQueue = {
   queue,
   queueName: UNCATEGORIZED_SERVICE_QUEUE
 };
 
-export { serviceQueue };
+export { uncategorizedServiceQueue };
