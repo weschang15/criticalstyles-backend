@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Fixed missing Redis event type `NOTIFICATION_ADDED`
+- Fixed duplicate queue listener
+
 ## [0.0.1] - 2019-09-07
 
 ### Added
