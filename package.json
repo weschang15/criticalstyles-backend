@@ -17,14 +17,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/weschang15/criticalstyles.git"
+    "url": "git+https://github.com/weschang15/criticalstyles-backend.git"
   },
   "author": "Wesley Chang",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/weschang15/criticalstyles/issues"
+    "url": "https://github.com/weschang15/criticalstyles-backend/issues"
   },
-  "homepage": "https://github.com/weschang15/criticalstyles#readme",
+  "homepage": "https://github.com/weschang15/criticalstyles-backend#readme",
   "dependencies": {
     "apollo-server-express": "^2.9.0",
     "argon2": "^0.24.0",
