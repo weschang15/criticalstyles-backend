@@ -1,8 +1,7 @@
+import { serviceQueue } from "../../../queues";
 import createPubsub from "../../../shared/redis/createPubSub";
 import { PAGE_ADDED } from "../../../shared/redis/events";
 import { extractErrors, withCatch } from "../../../utils";
-import { serviceQueue } from "../../../worker/queues/service";
-import { SERVICE_QUEUE } from "../../../worker/queues/types";
 
 const pubsub = createPubsub();
 
@@ -21,6 +20,7 @@ const mutation = async (
   { models: { Page, Site }, session },
   info
 ) => {
+  const { queue, queueName } = serviceQueue;
   async function createPage({ name, url, siteId }) {
     const site = await Site.findById(siteId);
     const newPage = new Page({ name, url, site });
@@ -35,7 +35,7 @@ const mutation = async (
     return { ok: false, errors: extractErrors(error) };
   }
 
-  serviceQueue.queue.add(SERVICE_QUEUE, {
+  queue.add(queueName, {
     pageId: page._id,
     pageUrl: page.url,
     viewport: input.viewport

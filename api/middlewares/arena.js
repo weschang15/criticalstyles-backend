@@ -1,6 +1,6 @@
 import Arena from "bull-arena";
+import types from "../../queues/types";
 import { getConfig } from "../../utils";
-import types from "../../worker/queues/types";
 
 const redis = getConfig("redis");
 
