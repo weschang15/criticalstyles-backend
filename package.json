@@ -9,8 +9,7 @@
   "main": "start.js",
   "scripts": {
     "start": "pm2-runtime start ecosystem.config.js --env production",
-    "server": "nodemon -r esm -r dotenv/config start",
-    "worker": "nodemon -r esm -r dotenv/config worker",
+    "dev:server": "nodemon -r esm -r dotenv/config start",
     "test:coverage": "jest --coverage --colors",
     "test:watch": "jest --watchAll",
     "test": "jest"
