@@ -1,6 +1,6 @@
-import { Page } from "../../../api/models";
-import createPubsub from "../../../shared/redis/createPubSub";
-import { PAGE_UPDATED } from "../../../shared/redis/events";
+import { Page } from "../../api/models";
+import createPubsub from "../../shared/redis/createPubSub";
+import { PAGE_UPDATED } from "../../shared/redis/events";
 
 const pubsub = createPubsub();
 

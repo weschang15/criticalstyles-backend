@@ -1,4 +1,4 @@
-import createQueue from "../../../shared/bull/createQueue";
+import createQueue from "../../shared/bull/createQueue";
 import { UNCATEGORIZED_SERVICE_QUEUE } from "../types";
 import listeners from "./listeners";
 

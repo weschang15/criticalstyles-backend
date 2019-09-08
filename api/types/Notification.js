@@ -11,7 +11,7 @@ const Notification = gql`
   }
 
   extend type Subscription {
-    notificationAdded(input: NotificationAddedInput!): Data
+    notificationAdded(input: NotificationAddedInput!): Notification
   }
 `;
 
