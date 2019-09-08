@@ -11,6 +11,10 @@ const NotificationSchema = new _Schema({
     required: true,
     default: false
   },
+  data: {
+    type: Map,
+    of: String
+  },
   account: { type: Types.ObjectId, ref: "Account" }
 });
 
