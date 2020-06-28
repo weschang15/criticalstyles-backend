@@ -24,7 +24,8 @@ const Page = gql`
 
   input GetPagesInput {
     siteId: String!
-    after: String
+    skip: Int!
+    limit: Int
   }
 
   input NewPageInput {
