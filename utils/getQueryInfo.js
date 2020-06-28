@@ -6,11 +6,11 @@
  * @param {number} totalRowsPerPage the number of rows to limit a single page to
  * @return {Object} pageInfo
  */
-const getQueryInfo = (totalRows, totalRowsPerPage) => {
+const getQueryInfo = (totalRows, totalRowsPerPage = 10) => {
   return {
     total: totalRows,
     totalPages: Math.ceil(totalRows / totalRowsPerPage),
-    hasNextPage: totalRows > totalRowsPerPage
+    hasNextPage: totalRows > totalRowsPerPage,
   };
 };
 
