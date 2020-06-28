@@ -5,13 +5,14 @@ const AccountSchema = new _Schema({
   name: {
     type: String,
     trim: true,
-    required: true
+    required: true,
   },
   owner: { type: Types.ObjectId, ref: "User" },
-  users: [{ type: Types.ObjectId, ref: "User" }]
+  users: [{ type: Types.ObjectId, ref: "User" }],
+  tokens: [{ type: Types.ObjectId, ref: "Token" }],
 });
 
-AccountSchema.methods.toJSON = function() {
+AccountSchema.methods.toJSON = function () {
   return pick(this, ["name", "_id"]);
 };
 

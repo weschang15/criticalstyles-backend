@@ -12,6 +12,7 @@ import Root from "./Root";
 import Site from "./Site";
 import Stylesheet from "./Stylesheet";
 import StylesheetStats from "./StylesheetStats";
+import Token from "./Token";
 import User from "./User";
 import Viewport from "./Viewport";
 
@@ -30,6 +31,7 @@ export default [
   QueryInfo,
   Stylesheet,
   StylesheetStats,
+  Token,
   User,
-  Viewport
+  Viewport,
 ];
