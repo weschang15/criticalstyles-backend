@@ -9,12 +9,14 @@ import AuthMutations from "./mutations/auth";
 import PageMutations from "./mutations/page";
 import SiteMutations from "./mutations/site";
 import StylesheetMutations from "./mutations/stylesheet";
+import TokenMutations from "./mutations/token";
 import UserMutations from "./mutations/user";
 // import query resolvers
 import AccountQueries from "./queries/account";
 import AuthQueries from "./queries/auth";
 import PageQueries from "./queries/page";
 import SiteQueries from "./queries/site";
+import TokenQueries from "./queries/token";
 import UserQueries from "./queries/user";
 // import subscription resolvers
 import NotificationSubscriptions from "./subscriptions/notification";
@@ -39,6 +41,8 @@ const resolvers = merge(
   SiteQueries,
   SiteSubscriptions,
   StylesheetMutations,
+  TokenQueries,
+  TokenMutations,
   UserMutations,
   UserQueries,
   UserSubscriptions
