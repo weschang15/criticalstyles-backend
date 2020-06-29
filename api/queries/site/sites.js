@@ -1,7 +1,7 @@
 import { getQueryInfo, withCatch } from "../../../utils";
 
-export default async (_, { filter }, { models: { Site }, account }, info) => {
-  const { limit, skip } = filter;
+export default async (_, { input }, { models: { Site }, account }, info) => {
+  const { limit, skip } = input;
   const query = {
     account,
   };
