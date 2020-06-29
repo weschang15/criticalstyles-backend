@@ -1,8 +1,7 @@
 import crypto from "crypto";
-import { tokenSecret } from "../../config";
 import Encrypter from "./Encrypter";
 
-const encrypter = new Encrypter({ secret: tokenSecret });
+const encrypter = new Encrypter();
 
 function createApiKeys() {
   // we should concatenate user id here so that when we decrypt for incoming
