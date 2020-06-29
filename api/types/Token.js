@@ -2,7 +2,9 @@ import { gql } from "apollo-server-express";
 
 const Token = gql`
   type Token {
+    _id: ID!
     secret: String!
+    createdAt: Date!
   }
 
   type TokensPayload {
