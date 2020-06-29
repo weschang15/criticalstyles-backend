@@ -28,7 +28,7 @@ const Site = gql`
   }
 
   extend type Query {
-    sites(filter: Filter): SitesResponse!
+    sites(input: Filter!): SitesResponse!
   }
 
   extend type Subscription {
