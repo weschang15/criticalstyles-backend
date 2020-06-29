@@ -3,7 +3,7 @@ import { extractErrors, withCatch } from "../../../utils";
 export default async (_, { input }, { models: { Token }, user, account }) => {
   const { _id } = input;
   const deleteToken = async () => {
-    if (user._id !== account.owner._id) {
+    if (user._id.toString() !== account.owner._id.toString()) {
       throw new Error(
         "Permission denied. Must be account owner to delete API keys."
       );
