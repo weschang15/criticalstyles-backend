@@ -1,7 +1,8 @@
 import { extractErrors, withCatch } from "../../../utils";
 import { createApiKeys } from "../../services";
 
-const mutation = async (_, args, { models: { Token }, user, account }) => {
+const mutation = async (_, { input }, { models: { Token }, user, account }) => {
+  const { host } = input;
   async function createToken() {
     if (user._id.toString() !== account.owner.toString()) {
       throw new Error(
@@ -10,7 +11,7 @@ const mutation = async (_, args, { models: { Token }, user, account }) => {
     }
 
     const keys = createApiKeys();
-    const newToken = new Token({ ...keys, createdBy: user, account });
+    const newToken = new Token({ ...keys, host, createdBy: user, account });
     await newToken.save();
 
     return { secret: keys.secret };
