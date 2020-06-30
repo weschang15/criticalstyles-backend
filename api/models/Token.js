@@ -9,9 +9,29 @@ const TokenSchema = new _Schema({
   },
   secret: {
     type: String,
-    slug: "name",
     unique: true,
     trim: true,
+  },
+  host: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  limit: {
+    type: Number,
+    default: 100,
+  },
+  usage: {
+    count: {
+      type: Number,
+      default: 0,
+    },
+    requests: [
+      {
+        endpoint: String,
+        timestamp: Date,
+      },
+    ],
   },
   account: { type: Types.ObjectId, ref: "Account" },
   createdBy: { type: Types.ObjectId, ref: "User" },
