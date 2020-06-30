@@ -4,7 +4,6 @@ const Token = gql`
   type Token {
     _id: ID!
     secret: String!
-    host: String!
     createdAt: Date!
   }
 
@@ -30,16 +29,12 @@ const Token = gql`
     errors: [Error!]
   }
 
-  input NewTokenInput {
-    host: String!
-  }
-
   input DeleteTokenInput {
     _id: String!
   }
 
   extend type Mutation {
-    createToken(input: NewTokenInput!): TokenPayload!
+    createToken: TokenPayload!
     deleteToken(input: DeleteTokenInput!): Response!
   }
 `;

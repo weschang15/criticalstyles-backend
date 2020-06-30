@@ -12,11 +12,6 @@ const TokenSchema = new _Schema({
     unique: true,
     trim: true,
   },
-  host: {
-    type: String,
-    required: true,
-    trim: true,
-  },
   limit: {
     type: Number,
     default: 100,
