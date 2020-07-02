@@ -44,12 +44,17 @@ const Page = gql`
     pageId: String!
   }
 
+  input DeletePageInput {
+    _id: String!
+  }
+
   extend type Query {
     pages(input: GetPagesInput!): GetPagesResponse!
   }
 
   extend type Mutation {
     createPage(input: NewPageInput!): PageResponse!
+    deletePage(input: DeletePageInput!): Response!
   }
 
   extend type Subscription {

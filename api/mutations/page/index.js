@@ -1,9 +1,11 @@
 import createPage from "./createPage";
+import deletePage from "./deletePage";
 
 const mutations = {
   Mutation: {
-    createPage
-  }
+    createPage,
+    deletePage,
+  },
 };
 
 export default mutations;
