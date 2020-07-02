@@ -9,7 +9,7 @@ const resolver = async (_, { input }, { models: { Page } }, info) => {
   const [error, [total, documents]] = await withCatch(
     Promise.all([
       Page.countDocuments({ site: siteId }),
-      Page.find(query).skip(skip).limit(limit).sort({ createdAt: -1 }),
+      Page.find(query).skip(skip).limit(limit).sort({ createdAt: 1 }),
     ])
   );
 
