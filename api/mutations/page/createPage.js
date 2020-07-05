@@ -35,16 +35,22 @@ const mutation = async (
     return { ok: false, errors: extractErrors(error) };
   }
 
-  queue.add(queueName, {
-    pageId: page._id,
-    pageUrl: page.url,
-    viewport: input.viewport
-  });
+  queue.add(
+    queueName,
+    {
+      pageId: page._id,
+      pageUrl: page.url,
+      viewport: input.viewport,
+    },
+    {
+      removeOnComplete: true,
+    }
+  );
 
   pubsub.publish(PAGE_ADDED, {
     accountId: session.account._id,
     siteId: input.siteId,
-    pageAdded: page
+    pageAdded: page,
   });
 
   return { ok: true, page };

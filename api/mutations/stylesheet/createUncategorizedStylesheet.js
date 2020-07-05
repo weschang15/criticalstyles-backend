@@ -14,11 +14,17 @@ const mutation = async (_, { input: { url, viewport } }, { session }, info) => {
   const { queue, queueName } = uncategorizedServiceQueue;
 
   // Add user data to queue that handles CCSS for uncategorized requests
-  queue.add(queueName, {
-    accountId: session.account._id,
-    pageUrl: url,
-    viewport
-  });
+  queue.add(
+    queueName,
+    {
+      accountId: session.account._id,
+      pageUrl: url,
+      viewport,
+    },
+    {
+      removeOnComplete: true,
+    }
+  );
 
   return { ok: true };
 };
