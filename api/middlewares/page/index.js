@@ -1,13 +1,15 @@
 import createPage from "./createPage";
 import pages from "./pages";
+import refreshPage from "./refreshPage";
 
 const middleware = {
   Query: {
-    pages
+    pages,
   },
   Mutation: {
-    createPage
-  }
+    createPage,
+    refreshPage,
+  },
 };
 
 export default middleware;

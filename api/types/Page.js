@@ -7,6 +7,7 @@ const Page = gql`
     url: String!
     stylesheet: Stylesheet!
     createdAt: Date!
+    updatedAt: Date!
   }
 
   type PageResponse {
@@ -35,6 +36,12 @@ const Page = gql`
     viewport: [Int!]
   }
 
+  input RefreshPageInput {
+    _id: String!
+    url: String!
+    viewport: [Int!]
+  }
+
   input PageAddedInput {
     accountId: String!
     siteId: String!
@@ -55,6 +62,7 @@ const Page = gql`
   extend type Mutation {
     createPage(input: NewPageInput!): PageResponse!
     deletePage(input: DeletePageInput!): Response!
+    refreshPage(input: RefreshPageInput!): Response!
   }
 
   extend type Subscription {
