@@ -44,7 +44,7 @@
     "graphql-redis-subscriptions": "^2.1.2",
     "helmet": "^3.23.3",
     "ioredis": "^4.17.3",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mongoose": "^5.8.11",
     "mongoose-slug-updater": "^3.2.3",
     "node-fetch": "^2.6.0",
