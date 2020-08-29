@@ -4,7 +4,7 @@ module.exports = {
       name: "API",
       script: "./start.js",
       node_args: "-r esm -r dotenv/config",
-      instances: "max",
+      instances: 2,
       exec_mode: "cluster",
       autorestart: true,
       watch: false,
